@@ -1,0 +1,23 @@
+{
+  "name": "pink-bird",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamBishop/pink-bird.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TeamBishop/pink-bird/issues"
+  },
+  "homepage": "https://github.com/TeamBishop/pink-bird#readme",
+  "dependencies": {
+    "systemjs": "^0.19.39",
+    "systemjs-plugin-babel": "0.0.15"
+  }
+}
