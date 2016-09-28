@@ -1,3 +1,5 @@
+/* globals localStorage */
+
 'use strict';
 
 import * as httpRequester from 'httpRequester';
@@ -5,7 +7,8 @@ import { appCredentials, baseServiceUrl } from 'appConstants';
 import { getBase64Code } from 'utils';
 import $ from 'jquery';
 
-const BASE_AUTH_CODE = 'Basic' + ' ' + getBase64Code(appCredentials.appKey + ':' + appCredentials.appSecret);
+const BASE_AUTH_CODE = 'Basic' + ' ' + getBase64Code(appCredentials.appKey + ':' + appCredentials.appSecret),
+    AUTH_TOKEN_KEY = 'auth-token';
 
 function signUp(username, password, email) {
     let url = baseServiceUrl + '/user/' + appCredentials.appKey;
@@ -18,22 +21,66 @@ function signUp(username, password, email) {
         email
     };
 
-    return httpRequester.postJSON(url, {
-        headers: headers,
-        data: userData
-    });
+    httpRequester.postJSON(url, {
+            headers: headers,
+            data: userData
+        })
+        .then((responseData) => {
+            localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
+            console.log(responseData);
+            return {
+                username: responseData.username
+            };
+        }, (error) => {
+            console.log(error);
+            return error;
+        });
 }
 
-function logIn() {
+function logIn(username, password) {
+    let url = baseServiceUrl + '/user/' + appCredentials.appKey + '/login';
+    let headers = {
+        'Authorization': BASE_AUTH_CODE
+    };
+    let userData = {
+        username,
+        password
+    };
 
+    httpRequester.postJSON(url, {
+            headers: headers,
+            data: userData
+        })
+        .then((responseData) => {
+            localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
+            console.log(responseData);
+            return {
+                username: responseData.username
+            };
+        }, (error) => {
+            console.log(error);
+            return error;
+        });
 }
 
 function logOut() {
+    let url = baseServiceUrl + '/user/' + appCredentials.appKey + '/_logout';
+    let headers = {
+        'Authorization': 'Kinvey' + ' ' + localStorage.getItem(AUTH_TOKEN_KEY)
+    };
 
+    httpRequester.post(url, {
+            headers: headers
+        })
+        .then((responseData) => {
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+        }, (error) => {
+            return error;
+        });
 }
 
 function hasLoggedInUser() {
-
+    return localStorage.getItem(AUTH_TOKEN_KEY) !== null;
 }
 
 export {
