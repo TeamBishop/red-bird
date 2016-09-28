@@ -1,23 +1,26 @@
-import * as users from 'userService';
+import Sammy from 'Sammy';
+import { hasLoggedInUser } from 'userService';
 
-// Tests
-let SignUp = document.createElement('a');
-SignUp.innerHTML = 'SignUp';
-document.getElementById('container').appendChild(SignUp);
-SignUp.addEventListener('click', function() {
-    users.signUp('Stoyan', 123, 'st@abv.bg');
+let app = new Sammy('#container', function() {
+    this.get('#/', function() {
+        if (!hasLoggedInUser()) {
+            this.redirect('#/login');
+        }
+
+        console.log('Main page');
+    });
+
+    this.get('#/home', function() {
+        this.redirect('/#/');
+    });
+
+    this.get('/#/signup', function() {
+        console.log('Sign UP');
+    });
+
+    this.get('/#/login', function() {
+        console.log('Logging');
+    });
 });
 
-let LogIn = document.createElement('a');
-LogIn.innerHTML = 'LogIn';
-document.getElementById('container').appendChild(LogIn);
-LogIn.addEventListener('click', function() {
-    users.logIn('Stoyan', 123);
-});
-
-let LogOut = document.createElement('a');
-LogOut.innerHTML = 'LogOut';
-document.getElementById('container').appendChild(LogOut);
-LogOut.addEventListener('click', function() {
-    users.logOut();
-});
+app.run('#/');

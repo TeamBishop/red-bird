@@ -13,6 +13,7 @@ SystemJS.config({
         'httpRequester': './scripts/helpers/http-requester.js',
         'appConstants': './scripts/helpers/app-constants.js',
         'userService': './scripts/services/userService.js',
-        'utils': './scripts/helpers/utils.js'
+        'utils': './scripts/helpers/utils.js',
+        'Sammy': '../bower_components/sammy/lib/sammy.js'
     }
 });
