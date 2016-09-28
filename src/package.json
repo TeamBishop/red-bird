@@ -19,5 +19,8 @@
   "dependencies": {
     "systemjs": "^0.19.39",
     "systemjs-plugin-babel": "0.0.15"
+  },
+  "devDependencies": {
+    "live-server": "^1.1.0"
   }
 }
