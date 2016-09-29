@@ -14,6 +14,8 @@ SystemJS.config({
         'appConstants': './scripts/helpers/app-constants.js',
         'userService': './scripts/services/userService.js',
         'utils': './scripts/helpers/utils.js',
-        'Sammy': '../bower_components/sammy/lib/sammy.js'
+        'Sammy': '../bower_components/sammy/lib/sammy.js',
+        'userController': './controllers/userController.js',
+        'template': './helpers/template.js.js',
     }
 });
