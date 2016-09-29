@@ -27,12 +27,10 @@ function signUp(username, password, email) {
         })
         .then((responseData) => {
             localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
-            console.log(responseData);
             return {
                 username: responseData.username
             };
         }, (error) => {
-            console.log(error);
             return error;
         });
 }
@@ -53,12 +51,10 @@ function logIn(username, password) {
         })
         .then((responseData) => {
             localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
-            console.log(responseData);
             return {
                 username: responseData.username
             };
         }, (error) => {
-            console.log(error);
             return error;
         });
 }

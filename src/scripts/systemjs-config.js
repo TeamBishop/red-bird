@@ -9,6 +9,7 @@ SystemJS.config({
         'systemjs-babel-build': '../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
         'jquery': '../bower_components/jquery/dist/jquery.js',
         'handlebars': '../bower_components/handlebars/handlebars.js',
+        'toastr': '../bower_components/toastr/toastr.min.js',
         'main': './scripts/main.js',
         'httpRequester': './scripts/helpers/http-requester.js',
         'appConstants': './scripts/helpers/app-constants.js',
@@ -16,6 +17,8 @@ SystemJS.config({
         'utils': './scripts/helpers/utils.js',
         'Sammy': '../bower_components/sammy/lib/sammy.js',
         'userController': './controllers/userController.js',
-        'template': './helpers/template.js.js',
+        'template': './helpers/template.js',
+        'dataValidator': './helpers/dataValidator.js',
+        'notifier': './helpers/notifier.js',
     }
 });
