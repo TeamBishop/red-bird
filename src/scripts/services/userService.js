@@ -26,12 +26,13 @@ function signUp(username, password, email) {
             data: userData
         })
         .then((responseData) => {
+            console.log(responseData)
             localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
-            return {
+            return Promise.resolve({
                 username: responseData.username
-            };
+            });
         }, (error) => {
-            return error;
+            return Promise.reject(error);
         });
 }
 
@@ -44,18 +45,19 @@ function logIn(username, password) {
         username,
         password
     };
-
-    httpRequester.postJSON(url, {
+    // debugger;
+    return httpRequester.postJSON(url, {
             headers: headers,
             data: userData
         })
         .then((responseData) => {
             localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
-            return {
+            console.log(responseData);
+            return Promise.resolve({
                 username: responseData.username
-            };
+            });
         }, (error) => {
-            return error;
+            return Promise.reject(error);
         });
 }
 

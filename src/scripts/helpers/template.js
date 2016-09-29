@@ -1,6 +1,6 @@
 'use strict';
 
-import httpRequester from 'httpRequester';
+import * as httpRequester from 'httpRequester';
 
 const pathStart = '../../html-templates/';
 

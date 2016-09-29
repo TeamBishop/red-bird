@@ -6,16 +6,17 @@ import notifier from 'notifier';
 
 import * as userService from 'userService';
 import { loadTemplate } from 'template';
-import dataValidator from 'dataValidator';
+import { dataValidator } from 'dataValidator';
 
 const $containerElement = $('#container');
 
-function authorize() {
+function authorise() {
     $('#nav-panel').hide();
 
-    loadTemplate('authorize.html')
+    loadTemplate('authorise.html')
         .then((htmlTemplate) => {
-            $containerElement.append(htmlTemplate);
+            $containerElement.html(htmlTemplate);
+            logInUser();
         });
 }
 
@@ -37,10 +38,10 @@ function logInUser() {
         }
 
         // TODO: Check password!!!
-
         userService.logIn(username, password)
             .then((responseData) => {
                 // Redirect
+                console.log(responseData);
                 notifier.notifySuccess('Logged in');
             }, (error) => {
                 console.log(error);
@@ -53,4 +54,4 @@ function logOutUser() {
 
 }
 
-export { authorize };
+export { authorise };

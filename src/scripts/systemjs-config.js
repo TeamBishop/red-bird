@@ -16,9 +16,9 @@ SystemJS.config({
         'userService': './scripts/services/userService.js',
         'utils': './scripts/helpers/utils.js',
         'Sammy': '../bower_components/sammy/lib/sammy.js',
-        'userController': './controllers/userController.js',
-        'template': './helpers/template.js',
-        'dataValidator': './helpers/dataValidator.js',
-        'notifier': './helpers/notifier.js',
+        'userController': './scripts/controllers/userController.js',
+        'template': './scripts/helpers/template.js',
+        'dataValidator': './scripts/helpers/dataValidator.js',
+        'notifier': './scripts/helpers/notifier.js',
     }
 });
