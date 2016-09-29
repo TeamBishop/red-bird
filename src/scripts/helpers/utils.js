@@ -1,3 +1,4 @@
+/* globals btoa */
 'use strict';
 
 function getBase64Code(value) {

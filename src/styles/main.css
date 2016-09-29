@@ -1,0 +1,49 @@
+div.authorise {
+    border: 3px solid deeppink;
+    border-radius: 15px;
+    padding: 10px;
+    width: 200px;
+    background-color: #FFE5FD
+}
+
+div.authorise h1 {
+    color: pink;
+}
+
+div.authorise input {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+div.authorise a {
+    border: 1px solid hotpink;
+    border-radius: 5px;
+    background-color: pink;
+    text-decoration: none;
+    color: darkblue;
+}
+
+
+/* wild magic do not touch, delete only if too much pink! */
+
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: hotpink;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: hotpink;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: hotpink;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: hotpink;
+}
