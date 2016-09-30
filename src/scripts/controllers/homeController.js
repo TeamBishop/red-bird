@@ -16,4 +16,11 @@ function homePanel() {
         });
 }
 
-export { homePanel };
+function profilePanel() {
+    loadTemplate('profile.html')
+        .then((htmlTemplate) => {
+            $containerElement.html(htmlTemplate);
+        });
+}
+
+export { homePanel, profilePanel };

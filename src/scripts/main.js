@@ -36,6 +36,15 @@ let app = new Sammy('#container', function() {
         });
     });
 
+    this.get('#/profile', function() {
+        let wrapperBackgroundUrl = '../images/home-background.jpg';
+        homeController.profilePanel();
+
+        $('#wrapper').css({
+            'background-image': 'url(' + wrapperBackgroundUrl + ')',
+        });
+    });
+
     this.get('#/logout', userController.logOutUser);
 });
 
