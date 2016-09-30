@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { hasLoggedInUser } from 'userService';
 import * as userController from 'userController';
 import * as homeController from 'homeController';
+import * as navController from 'navController';
 
 
 let app = new Sammy('#container', function() {
@@ -12,6 +13,7 @@ let app = new Sammy('#container', function() {
         $('#wrapper').css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
+        navController.welcomePanel();
 
         userController.authoriseUser(context);
     });
@@ -27,6 +29,7 @@ let app = new Sammy('#container', function() {
     this.get('#/home', function() {
         let wrapperBackgroundUrl = '../images/home-background.jpg';
         homeController.homePanel();
+        navController.logedPanel();
 
         $('#wrapper').css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',

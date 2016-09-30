@@ -23,5 +23,6 @@ SystemJS.config({
         'dataValidator': './scripts/helpers/dataValidator.js',
         'notifier': './scripts/helpers/notifier.js',
         'homeController': './scripts/controllers/homeController.js',
+        'navController': './scripts/controllers/navController.js',
     }
 });

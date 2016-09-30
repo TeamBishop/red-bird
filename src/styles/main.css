@@ -8,8 +8,14 @@ html {
     height: 100%
 }
 
-#nav-panel {
-    display: none
+#nav-panel img {
+    width: 35px;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+#nav-panel .navbar-right>li:last-child {
+    margin-right: 15px;
 }
 
 .authorisation {
