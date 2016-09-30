@@ -13,6 +13,11 @@ let app = new Sammy('#container', function() {
 
         if (hasLoggedInUser() && $navPanel.html() === undefined) {
             navController.logedPanel();
+
+            let wrapperBackgroundUrl = '../images/home-background.jpg';
+            $('#wrapper').css({
+                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+            });
         }
     });
 
