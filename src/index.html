@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <title>Pink Bird</title>
     <link rel="stylesheet" href="./styles/main.css">
-    <link rel="" type="stylesheet" href="./bower_components/toastr/toastr.min.css">
+    <link rel="stylesheet" href="./bower_components/toastr/toastr.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
 </head>
 
 <body>
     <div id="wrapper">
         <header>
-            <nav id="nav-panel">
-                <ul id="main-navigation">
+            <nav id="nav-panel" class="navbar navbar-default">
+                <ul id="main-navigation" class="nav navbar-nav">
                     <li>
                         <a href="#/">Home</a>
                     </li>
@@ -30,6 +31,7 @@
         <div id="container"></div>
     </div>
 
+    <!--<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
     <script src="./node_modules/systemjs/dist/system.js"></script>
     <script src="./scripts/systemjs-config.js"></script>
     <script>

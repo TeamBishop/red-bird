@@ -2,7 +2,7 @@
 
 import $ from 'jquery';
 import handlebars from 'handlebars';
-import notifier from 'notifier';
+import * as notifier from 'notifier';
 
 import * as userService from 'userService';
 import { loadTemplate } from 'template';
@@ -10,42 +10,58 @@ import { dataValidator } from 'dataValidator';
 
 const $containerElement = $('#container');
 
-function authorise() {
-    $('#nav-panel').hide();
-
+function authoriseUser(context) {
     loadTemplate('authorise.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
-            logInUser();
+            signUp(context);
+            logInUser(context);
         });
 }
 
-function logInUser() {
+function signUp(context) {
+    $('#btn-signup').on('click', function() {
+        let username = $('#tb-username-signup').val();
+        let password = $('#tb-password-signup').val();
+        let email = $('#tb-password-signup').val();
+
+        if (!isValidUsername(username)) {
+            return;
+        }
+
+        if (!isValidPassword(password)) {
+            return;
+        }
+
+        userService.signUp(username, password, email)
+            .then((responseData) => {
+                context.redirect('#/');
+                notifier.notifySuccess('Signed up');
+            }, (error) => {
+                console.log('Error in sign up');
+            });
+    });
+}
+
+function logInUser(context) {
     $('#btn-login').on('click', function() {
         let username = $('#tb-username-login').val();
         let password = $('#tb-password-login').val();
 
-        if (dataValidator.stringValidation.isEmpty(username) ||
-            dataValidator.stringValidation.isEmpty(password)) {
-            notifier.notifyError('Username and password required to log in!');
+        if (!isValidUsername(username)) {
             return;
         }
 
-        // TODO: Use constants!!!
-        if (!dataValidator.stringValidation.isLengthInRange(username, 3, 20)) {
-            notifier.notifyError('Username must be between ' + 3 + ' and ' + 20 + ' characters long!');
+        if (!isValidPassword(password)) {
             return;
         }
 
-        // TODO: Check password!!!
         userService.logIn(username, password)
             .then((responseData) => {
-                // Redirect
-                console.log(responseData);
+                context.redirect('#/');
                 notifier.notifySuccess('Logged in');
             }, (error) => {
-                console.log(error);
-                notifier.notifyError('Greshka');
+                notifier.notifyError('Incorrect username or password!');
             });
     });
 }
@@ -54,4 +70,28 @@ function logOutUser() {
 
 }
 
-export { authorise };
+function isValidUsername(username) {
+    if (dataValidator.stringValidation.isEmpty(username)) {
+        notifier.notifyError('Username is required!');
+        return false;
+    }
+
+    // TODO: Use constants!!!
+    if (!dataValidator.stringValidation.isLengthInRange(username, 3, 20)) {
+        notifier.notifyError('Username must be between ' + 3 + ' and ' + 20 + ' characters long!');
+        return false;
+    }
+
+    return true;
+}
+
+function isValidPassword(password) {
+    if (dataValidator.stringValidation.isEmpty(password)) {
+        notifier.notifyError('Password is required!');
+        return false;
+    }
+
+    return true;
+}
+
+export { authoriseUser, logOutUser };

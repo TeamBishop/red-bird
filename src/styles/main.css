@@ -1,3 +1,8 @@
+body,
+html {
+    height: 100%
+}
+
 div.authorise {
     border: 3px solid deeppink;
     border-radius: 15px;
@@ -21,6 +26,18 @@ div.authorise a {
     background-color: pink;
     text-decoration: none;
     color: darkblue;
+}
+
+#wrapper {
+    height: 100%
+}
+
+.aithorisation-panel {
+    text-align: center
+}
+
+.welcome-header {
+    color: #fff;
 }
 
 
