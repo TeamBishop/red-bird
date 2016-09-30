@@ -1,7 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
-import handlebars from 'handlebars';
+//import handlebars from 'handlebars';
 import * as notifier from 'notifier';
 
 import * as userService from 'userService';

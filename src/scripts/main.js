@@ -5,6 +5,7 @@ import { hasLoggedInUser } from 'userService';
 import * as userController from 'userController';
 import * as homeController from 'homeController';
 import * as navController from 'navController';
+import * as feedController from 'feedController';
 
 
 let app = new Sammy('#container', function() {
@@ -22,8 +23,8 @@ let app = new Sammy('#container', function() {
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
         navController.welcomePanel();
-
         userController.authoriseUser(context);
+
     });
 
     this.get('#/', function() {
@@ -38,6 +39,8 @@ let app = new Sammy('#container', function() {
         let wrapperBackgroundUrl = '../images/home-background.jpg';
         homeController.homePanel();
         navController.logedPanel();
+        feedController.createPost();
+
 
         $('#wrapper').css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
