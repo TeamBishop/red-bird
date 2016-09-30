@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body,
 html {
     height: 100%
@@ -75,6 +80,14 @@ div#profile div#profile-edit {
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     padding: 5px;
+}
+
+div#profile .edit-profile-buttons {
+    text-decoration: none;
+    color: darkred;
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: pink;
 }
 
 
