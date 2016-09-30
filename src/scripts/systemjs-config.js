@@ -24,5 +24,8 @@ SystemJS.config({
         'notifier': './scripts/helpers/notifier.js',
         'homeController': './scripts/controllers/homeController.js',
         'navController': './scripts/controllers/navController.js',
+        'feedController': './scripts/controllers/feedController.js',
+        'feedService': './scripts/services/feedService.js',
+
     }
 });

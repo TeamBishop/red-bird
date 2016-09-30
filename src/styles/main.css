@@ -161,6 +161,35 @@ div#profile .edit-profile-buttons {
 }
 
 
+/*MUST BE DELETED-START*/
+
+#post-context {
+    border-radius: 20px;
+    border-top-left-radius: 0px;    
+    background-color: pink;
+    padding: 10px;
+    padding-bottom: 40px;
+    width: 443px;
+    color: black;
+    display: block;
+}
+
+#post-message{
+    width: 50%; 
+    position: relative;
+    left: 50%;
+    /*top:5%;*/
+    transform: translate(-50%,0%); 
+}
+#post-btn, #post-img {
+    border-radius: 20px;
+    background-color:hotpink;    
+    margin-top: 10px;
+    float: right;
+}
+/*MUST BE DELETED-END*/
+
+
 /* wild magic do not touch, delete only if too much pink! */
 
 ::-webkit-input-placeholder {
