@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import { hasLoggedInUser } from 'userService';
 import * as userController from 'userController';
+import * as homeController from 'homeController';
 
 
 let app = new Sammy('#container', function() {
@@ -24,7 +25,12 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/home', function() {
-        console.log('Logged IN');
+        let wrapperBackgroundUrl = '../images/home-background.jpg';
+        homeController.homePanel();
+
+        $('#wrapper').css({
+            'background-image': 'url(' + wrapperBackgroundUrl + ')',
+        });
     });
 
     this.get('#/logout', userController.logOutUser);
