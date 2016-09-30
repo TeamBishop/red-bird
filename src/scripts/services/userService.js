@@ -2,13 +2,15 @@
 
 'use strict';
 
+import $ from 'jquery';
+
 import * as httpRequester from 'httpRequester';
 import { appCredentials, baseServiceUrl } from 'appConstants';
 import { getBase64Code } from 'utils';
-import $ from 'jquery';
 
 const BASE_AUTH_CODE = 'Basic' + ' ' + getBase64Code(appCredentials.appKey + ':' + appCredentials.appSecret),
-    AUTH_TOKEN_KEY = 'auth-token';
+    AUTH_TOKEN_KEY = 'x-auth-token',
+    USER_ID = 'x-user-id';
 
 function signUp(username, password, email) {
     let url = baseServiceUrl + '/user/' + appCredentials.appKey;
@@ -21,19 +23,21 @@ function signUp(username, password, email) {
         email
     };
 
-    httpRequester.postJSON(url, {
-            headers: headers,
-            data: userData
-        })
-        .then((responseData) => {
-            console.log(responseData)
-            localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
-            return Promise.resolve({
-                username: responseData.username
+    return new Promise((resolve, reject) => {
+        httpRequester.postJSON(url, {
+                headers: headers,
+                data: userData
+            })
+            .then((responseData) => {
+                localStorage.setItem(USER_ID, responseData._id);
+                localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
+                resolve({
+                    username: responseData.username
+                });
+            }, (error) => {
+                reject(error);
             });
-        }, (error) => {
-            return Promise.reject(error);
-        });
+    });
 }
 
 function logIn(username, password) {
@@ -45,20 +49,22 @@ function logIn(username, password) {
         username,
         password
     };
-    // debugger;
-    return httpRequester.postJSON(url, {
-            headers: headers,
-            data: userData
-        })
-        .then((responseData) => {
-            localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
-            console.log(responseData);
-            return Promise.resolve({
-                username: responseData.username
+
+    return new Promise((resolve, reject) => {
+        httpRequester.postJSON(url, {
+                headers: headers,
+                data: userData
+            })
+            .then((responseData) => {
+                localStorage.setItem(USER_ID, responseData._id);
+                localStorage.setItem(AUTH_TOKEN_KEY, responseData._kmd.authtoken);
+                resolve({
+                    username: responseData.username
+                });
+            }, (error) => {
+                reject(error);
             });
-        }, (error) => {
-            return Promise.reject(error);
-        });
+    });
 }
 
 function logOut() {
@@ -67,14 +73,18 @@ function logOut() {
         'Authorization': 'Kinvey' + ' ' + localStorage.getItem(AUTH_TOKEN_KEY)
     };
 
-    httpRequester.post(url, {
-            headers: headers
-        })
-        .then((responseData) => {
-            localStorage.removeItem(AUTH_TOKEN_KEY);
-        }, (error) => {
-            return error;
-        });
+    return new Promise((resolve, reject) => {
+        httpRequester.post(url, {
+                headers: headers
+            })
+            .then((responseData) => {
+                localStorage.removeItem(AUTH_TOKEN_KEY);
+                localStorage.removeItem(USER_ID);
+                resolve();
+            }, (error) => {
+                reject(error);
+            });
+    });
 }
 
 function hasLoggedInUser() {
