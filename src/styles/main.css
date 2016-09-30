@@ -3,15 +3,38 @@ html {
     height: 100%
 }
 
+#nav-panel {
+    display: none
+}
+
+.authorisation {
+    text-align: center;
+}
+
+#wrapper {
+    height: 100%
+}
+
+.authorisation .authorisation-panel {
+    text-align: center;
+}
+
+.authorisation .welcome-header {
+    color: #fff;
+    margin: 0;
+}
+
 div.authorise {
     border: 3px solid deeppink;
     border-radius: 15px;
     padding: 10px;
     width: 200px;
-    background-color: #FFE5FD
+    background-color: #FFE5FD;
+    display: inline-block;
+    margin-top: 10px;
 }
 
-div.authorise h1 {
+div.authorise span {
     color: pink;
 }
 
@@ -26,18 +49,6 @@ div.authorise a {
     background-color: pink;
     text-decoration: none;
     color: darkblue;
-}
-
-#wrapper {
-    height: 100%
-}
-
-.aithorisation-panel {
-    text-align: center
-}
-
-.welcome-header {
-    color: #fff;
 }
 
 

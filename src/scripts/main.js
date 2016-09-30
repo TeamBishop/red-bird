@@ -5,7 +5,6 @@ import { hasLoggedInUser } from 'userService';
 import * as userController from 'userController';
 
 
-
 let app = new Sammy('#container', function() {
     this.get('#/authorise', function(context) {
         let wrapperBackgroundUrl = '../images/login-background.jpg';
@@ -29,12 +28,6 @@ let app = new Sammy('#container', function() {
     });
 });
 
-app.run('#/');
-
-(function() {
-    if (hasLoggedInUser()) {
-        $('#nav-panel').show();
-    } else {
-        $('#nav-panel').hide();
-    }
+$(function() {
+    app.run('#/');
 }());
