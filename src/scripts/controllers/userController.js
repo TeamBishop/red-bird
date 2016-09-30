@@ -23,7 +23,7 @@ function signUp(context) {
     $('#btn-signup').on('click', function() {
         let username = $('#tb-username-signup').val();
         let password = $('#tb-password-signup').val();
-        let email = $('#tb-password-signup').val();
+        let email = $('#tb-email-signup').val();
 
         if (!isValidUsername(username)) {
             return;
