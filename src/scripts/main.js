@@ -8,6 +8,14 @@ import * as navController from 'navController';
 
 
 let app = new Sammy('#container', function() {
+    this.before({ except: { path: '#/authorise' } }, function() {
+        const $navPanel = $('nav-panel');
+
+        if (hasLoggedInUser() && $navPanel.html() === undefined) {
+            navController.logedPanel();
+        }
+    });
+
     this.get('#/authorise', function(context) {
         let wrapperBackgroundUrl = '../images/login-background.jpg';
         $('#wrapper').css({
