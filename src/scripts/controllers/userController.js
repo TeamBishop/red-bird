@@ -66,8 +66,12 @@ function logInUser(context) {
     });
 }
 
-function logOutUser() {
-
+function logOutUser(context) {
+    userService.logOut()
+        .then((responseData) => {
+            context.redirect('#/');
+            notifier.notifySuccess('Logged out');
+        });
 }
 
 function isValidUsername(username) {

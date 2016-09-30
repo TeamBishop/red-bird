@@ -79,7 +79,7 @@ function logOut() {
             })
             .then((responseData) => {
                 localStorage.removeItem(AUTH_TOKEN_KEY);
-                localStorage.setItem(USER_ID, responseData._id);
+                localStorage.removeItem(USER_ID);
                 resolve();
             }, (error) => {
                 reject(error);

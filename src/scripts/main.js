@@ -26,6 +26,8 @@ let app = new Sammy('#container', function() {
     this.get('#/home', function() {
         console.log('Logged IN');
     });
+
+    this.get('#/logout', userController.logOutUser);
 });
 
 $(function() {
