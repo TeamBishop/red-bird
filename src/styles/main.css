@@ -23,6 +23,32 @@ div.authorise a {
     color: darkblue;
 }
 
+div#profile {
+    border: 1px solid purple;
+    width: 500px;
+    padding: 10px;
+}
+
+div#profile>div {
+    border: 1px solid purple;
+}
+
+div#profile div#profile-preview {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 5px;
+}
+
+div#profile div#profile-preview img {
+    width: 100px;
+}
+
+div#profile div#profile-edit {
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 5px;
+}
+
 
 /* wild magic do not touch, delete only if too much pink! */
 
