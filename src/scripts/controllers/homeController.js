@@ -15,29 +15,41 @@ const $containerElement = $('#container'),
 
 
 function generateHome() {
+    homePanel().then(()=>{
+        let image = 'null';
 
-    homePanel().then(() => {
+        $('#post-img').on('change', function () {
+            if (this.files && this.files[0]) {
+                var imageReader = new FileReader();
+                imageReader.onload = function(e) {
+                    image = '' + e.target.result;
+                };
+                imageReader.readAsDataURL(this.files[0]);
+            }
+        } );
+
+        console.log('loadded');
+
         $('#post-btn').on('click', function() {
             let username = localStorage.getItem(USER_ID),
                 message = $('#post-context').val(),
-                image = $('#post-image').val(),
                 context = {
                     message: message,
                     image: image
                 };
 
             $('#post-context').val('');
-
+                
             // Must add some kind of validation !
 
             homeService
-                .sendPost(username, context)
-                .then((responseData) => {
-                    console.log(responseData);
-
-                }, (error) => {
-                    console.log(error);
-                });
+            .sendPost(username, context)
+            .then((responseData) => {
+                console.log(responseData);
+                            
+            }, (error) => {
+                console.log(error);
+            });
         });
     });
 }
@@ -51,13 +63,6 @@ function homePanel() {
 }
 
 function profilePanel() {
-    loadTemplate('profile-template.html')
-        .then((htmlTemplate) => {
-            $containerElement.html(htmlTemplate);
-        });
-}
-
-function editProfilePanel() {
     loadTemplate('profile.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
@@ -71,4 +76,23 @@ function leftSidePanel() {
         });
 }
 
-export { generateHome, profilePanel, leftSidePanel, editProfilePanel };
+// BETA VERSION - DOESN'T WORK CORRECT!
+function getAllPost() {
+//     loadTemplate('post-feed.html')
+//         .then((htmlTemplate)=>{
+
+//             //console.log(someObj[0]._id);
+//             console.log(htmlTemplate);
+            
+//             let templateFunc = handlebars.compile(htmlTemplate);
+//             console.log(templateFunc());
+            
+//             let html = templateFunc(someObj);
+//             //console.log(html);
+            
+//             // $("#container").html(html);
+//             $('.post-feed').html(html);
+//         });
+}
+
+export { generateHome, getAllPost, profilePanel, leftSidePanel };
