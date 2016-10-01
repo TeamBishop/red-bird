@@ -16,7 +16,7 @@ let app = new Sammy('#container', function() {
             navController.logedPanel();
 
             let wrapperBackgroundUrl = '../images/home-background.jpg';
-            $('#wrapper').css({
+            $('body').css({
                 'background-image': 'url(' + wrapperBackgroundUrl + ')',
             });
         }
@@ -24,7 +24,7 @@ let app = new Sammy('#container', function() {
 
     this.get('#/authorise', function(context) {
         let wrapperBackgroundUrl = '../images/login-background.jpg';
-        $('#wrapper').css({
+        $('body').css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
         navController.welcomePanel();
