@@ -9,60 +9,59 @@ import { dataValidator } from 'dataValidator';
 
 const $containerElement = $('#container');
 
-function authoriseUser(context) {
-    loadTemplate('authorise.html')
+function signUpUser(context) {
+    loadTemplate('signup.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
-            signUpUser(context);
-            logInUser(context);
+            $('#btn-signup').on('click', function() {
+                let username = $('#tb-username-signup').val();
+                let password = $('#tb-password-signup').val();
+                let email = $('#tb-email-signup').val();
+
+                if (!isValidUsername(username)) {
+                    return;
+                }
+
+                if (!isValidPassword(password)) {
+                    return;
+                }
+
+                userService.signUp(username, password, email)
+                    .then((responseData) => {
+                        context.redirect('#/');
+                        notifier.notifySuccess('Signed up');
+                    }, (error) => {
+                        notifier.notifyError('Username is already used');
+                    });
+            });
         });
 }
 
-function signUpUser(context) {
-    $('#btn-signup').on('click', function() {
-        let username = $('#tb-username-signup').val();
-        let password = $('#tb-password-signup').val();
-        let email = $('#tb-email-signup').val();
-
-        if (!isValidUsername(username)) {
-            return;
-        }
-
-        if (!isValidPassword(password)) {
-            return;
-        }
-
-        userService.signUp(username, password, email)
-            .then((responseData) => {
-                context.redirect('#/');
-                notifier.notifySuccess('Signed up');
-            }, (error) => {
-                notifier.notifyError('Username is already used');
-            });
-    });
-}
-
 function logInUser(context) {
-    $('#btn-login').on('click', function() {
-        let username = $('#tb-username-login').val();
-        let password = $('#tb-password-login').val();
+    loadTemplate('login.html')
+        .then((htmlTemplate) => {
+            $containerElement.html(htmlTemplate);
+            $('#btn-login').on('click', function() {
+                let username = $('#tb-username-login').val();
+                let password = $('#tb-password-login').val();
 
-        if (!isValidUsername(username)) {
-            return;
-        }
+                if (!isValidUsername(username)) {
+                    return;
+                }
 
-        if (!isValidPassword(password)) {
-            return;
-        }
+                if (!isValidPassword(password)) {
+                    return;
+                }
 
-        userService.logIn(username, password)
-            .then((responseData) => {
-                context.redirect('#/');
-                notifier.notifySuccess('Logged in');
-            }, (error) => {
-                notifier.notifyError('Incorrect username or password');
+                userService.logIn(username, password)
+                    .then((responseData) => {
+                        context.redirect('#/');
+                        notifier.notifySuccess('Logged in');
+                    }, (error) => {
+                        notifier.notifyError('Incorrect username or password');
+                    });
             });
-    });
+        });
 }
 
 function logOutUser(context) {
@@ -97,4 +96,4 @@ function isValidPassword(password) {
     return true;
 }
 
-export { authoriseUser, logOutUser };
+export { signUpUser, logInUser, logOutUser };

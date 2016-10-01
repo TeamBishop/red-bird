@@ -40,9 +40,9 @@ let app = new Sammy('#container', function() {
         }
     });
 
-    this.get('#/authorise', function(context) {
+    this.get('#/signup', function(context) {
         navController.welcomePanel();
-        userController.authoriseUser(context);
+        userController.signUpUser(context);
 
         let wrapperBackgroundUrl = '../images/login-background.jpg';
         $body.css({
@@ -50,11 +50,23 @@ let app = new Sammy('#container', function() {
         });
     });
 
+    this.get('#/login', function(context) {
+        navController.welcomePanel();
+        userController.logInUser(context);
+
+        let wrapperBackgroundUrl = '../images/login-background.jpg';
+        $body.css({
+            'background-image': 'url(' + wrapperBackgroundUrl + ')',
+        });
+    });
+
+    this.get('#/logout', userController.logOutUser);
+
     this.get('#/', function() {
         if (hasLoggedInUser()) {
             this.redirect('#/home');
         } else {
-            this.redirect('#/authorise');
+            this.redirect('#/login');
         }
     });
 
@@ -73,7 +85,6 @@ let app = new Sammy('#container', function() {
         homeController.editProfilePanel();
     });
 
-    this.get('#/logout', userController.logOutUser);
 });
 
 $(function() {
