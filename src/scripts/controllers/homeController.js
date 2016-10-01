@@ -15,10 +15,10 @@ const $containerElement = $('#container'),
 
 
 function generateHome() {
-    homePanel().then(()=>{
+    homePanel().then(() => {
         let image = 'null';
 
-        $('#post-img').on('change', function () {
+        $('#post-img').on('change', function() {
             if (this.files && this.files[0]) {
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
@@ -26,7 +26,7 @@ function generateHome() {
                 };
                 imageReader.readAsDataURL(this.files[0]);
             }
-        } );
+        });
 
         console.log('loadded');
 
@@ -39,17 +39,17 @@ function generateHome() {
                 };
 
             $('#post-context').val('');
-                
+
             // Must add some kind of validation !
 
             homeService
-            .sendPost(username, context)
-            .then((responseData) => {
-                console.log(responseData);
-                            
-            }, (error) => {
-                console.log(error);
-            });
+                .sendPost(username, context)
+                .then((responseData) => {
+                    console.log(responseData);
+
+                }, (error) => {
+                    console.log(error);
+                });
         });
     });
 }
@@ -63,7 +63,7 @@ function homePanel() {
 }
 
 function profilePanel() {
-    loadTemplate('profile.html')
+    loadTemplate('profile-template.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
         });
@@ -78,21 +78,21 @@ function leftSidePanel() {
 
 // BETA VERSION - DOESN'T WORK CORRECT!
 function getAllPost() {
-//     loadTemplate('post-feed.html')
-//         .then((htmlTemplate)=>{
+    //     loadTemplate('post-feed.html')
+    //         .then((htmlTemplate)=>{
 
-//             //console.log(someObj[0]._id);
-//             console.log(htmlTemplate);
-            
-//             let templateFunc = handlebars.compile(htmlTemplate);
-//             console.log(templateFunc());
-            
-//             let html = templateFunc(someObj);
-//             //console.log(html);
-            
-//             // $("#container").html(html);
-//             $('.post-feed').html(html);
-//         });
+    //             //console.log(someObj[0]._id);
+    //             console.log(htmlTemplate);
+
+    //             let templateFunc = handlebars.compile(htmlTemplate);
+    //             console.log(templateFunc());
+
+    //             let html = templateFunc(someObj);
+    //             //console.log(html);
+
+    //             // $("#container").html(html);
+    //             $('.post-feed').html(html);
+    //         });
 }
 
 export { generateHome, getAllPost, profilePanel, leftSidePanel };
