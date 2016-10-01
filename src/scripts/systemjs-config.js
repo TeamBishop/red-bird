@@ -24,9 +24,10 @@ SystemJS.config({
         'dataValidator': './scripts/helpers/dataValidator.js',
         'notifier': './scripts/helpers/notifier.js',
         'homeController': './scripts/controllers/homeController.js',
+        'homeService': './scripts/services/homeService.js',
         'navController': './scripts/controllers/navController.js',
-        'feedController': './scripts/controllers/feedController.js',
-        'feedService': './scripts/services/feedService.js',
+        //'feedController': './scripts/controllers/feedController.js',
+        //'feedService': './scripts/services/feedService.js',
 
     }
 });
