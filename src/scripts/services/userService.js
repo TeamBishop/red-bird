@@ -7,20 +7,30 @@ import $ from 'jquery';
 import * as httpRequester from 'httpRequester';
 import { appCredentials, baseServiceUrl } from 'appConstants';
 import { getBase64Code } from 'utils';
+import { dataValidator } from 'dataValidator';
 
 const BASE_AUTH_CODE = 'Basic' + ' ' + getBase64Code(appCredentials.appKey + ':' + appCredentials.appSecret),
     AUTH_TOKEN_KEY = 'x-auth-token',
-    USER_ID = 'x-user-id';
+    USER_ID = 'x-user-id',
+    USERNAME_MIN_LENGTH = 3,
+    USERNAME_MAX_LENGTH = 20;
 
-function signUp(username, password, email) {
+function signUp(userData) {
+    if (!dataValidator.isValidName(userData.username, USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid username'
+        });
+    }
+
+    if (!dataValidator.isValidEmail(userData.email)) {
+        return Promise.reject({
+            message: 'E-mail contains invalid characters'
+        });
+    }
+
     let url = baseServiceUrl + '/user/' + appCredentials.appKey;
     let headers = {
         'Authorization': BASE_AUTH_CODE
-    };
-    let userData = {
-        username,
-        password,
-        email
     };
 
     return new Promise((resolve, reject) => {
@@ -40,14 +50,16 @@ function signUp(username, password, email) {
     });
 }
 
-function logIn(username, password) {
+function logIn(userData) {
+    if (!dataValidator.isValidName(userData.username, USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid username'
+        });
+    }
+
     let url = baseServiceUrl + '/user/' + appCredentials.appKey + '/login';
     let headers = {
         'Authorization': BASE_AUTH_CODE
-    };
-    let userData = {
-        username,
-        password
     };
 
     return new Promise((resolve, reject) => {
