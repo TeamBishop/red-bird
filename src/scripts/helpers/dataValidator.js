@@ -3,7 +3,8 @@
 const dataValidator = {
     isValidName(value, min, max, allowedCharacters) {
         if (allowedCharacters === undefined) {
-            allowedCharacters = 'qwertyuioplkjhgfdsazxcvbnm';
+            let defaultCharacters = 'qwertyuioplkjhgfdsazxcvbnm' + 'qwertyuioplkjhgfdsazxcvbnm'.toUpperCase();
+            allowedCharacters = defaultCharacters;
         }
 
         for (let i = 0; i < value.length; i += 1) {
