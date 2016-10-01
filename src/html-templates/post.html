@@ -1,0 +1,15 @@
+{{#post}}
+<div id="post">
+    <div id="post-profile-picture">
+        <img src="{{#if picture}}{{picture}}{{else}}{{http://orig07.deviantart.net/70be/f/2013/271/0/e/pink_twitter_bird_by_mcsdr_salem-d6oct2p.jpg}}{{/if}}" alt="">
+    </div>
+    <div id="post-body">
+        <div id="post-author">
+            <span>{{#if firstname}}{{firstname}}{{/if}} {{#if lastname}}{{firstname}}  <span class="username">{{/if}}{{username}}</span></span>
+        </div>
+        <div id="post-content">
+            <span>{{content}}</span>
+        </div>
+    </div>
+</div>
+{{/post}}

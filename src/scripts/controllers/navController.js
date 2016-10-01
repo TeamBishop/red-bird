@@ -23,4 +23,4 @@ function welcomePanel() {
         });
 }
 
-export { welcomePanel, logedPanel }
+export { welcomePanel, logedPanel };

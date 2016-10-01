@@ -1,11 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
-import handlebars from 'handlebars';
-import * as notifier from 'notifier';
-
 import { loadTemplate } from 'template';
-import { dataValidator } from 'dataValidator';
 
 const $containerElement = $('#container');
 

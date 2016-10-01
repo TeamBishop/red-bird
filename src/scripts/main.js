@@ -14,12 +14,17 @@ let app = new Sammy('#container', function() {
 
         if (hasLoggedInUser() && $navPanel.html() === undefined) {
             navController.logedPanel();
+
+            let wrapperBackgroundUrl = '../images/home-background.jpg';
+            $('body').css({
+                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+            });
         }
     });
 
     this.get('#/authorise', function(context) {
         let wrapperBackgroundUrl = '../images/login-background.jpg';
-        $('#wrapper').css({
+        $('body').css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
         navController.welcomePanel();
