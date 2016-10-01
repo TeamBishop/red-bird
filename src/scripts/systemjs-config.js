@@ -11,6 +11,7 @@ SystemJS.config({
         'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min.js',
         'handlebars': '../bower_components/handlebars/handlebars.js',
         'toastr': '../bower_components/toastr/toastr.min.js',
+        'flat-ui': '../styles/flat-ui-theme/js/flat-ui.min.js',
         'main': './scripts/main.js',
         'httpRequester': './scripts/helpers/http-requester.js',
         'appConstants': './scripts/helpers/app-constants.js',
