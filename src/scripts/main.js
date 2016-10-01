@@ -7,6 +7,7 @@ import * as homeController from 'homeController';
 import * as navController from 'navController';
 import * as feedController from 'feedController';
 
+let $body = $('body');
 
 let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/authorise' } }, function() {
@@ -16,7 +17,7 @@ let app = new Sammy('#container', function() {
             navController.logedPanel();
 
             let wrapperBackgroundUrl = '../images/home-background.jpg';
-            $('body').css({
+            $body.css({
                 'background-image': 'url(' + wrapperBackgroundUrl + ')',
             });
         }
@@ -24,7 +25,7 @@ let app = new Sammy('#container', function() {
 
     this.get('#/authorise', function(context) {
         let wrapperBackgroundUrl = '../images/login-background.jpg';
-        $('body').css({
+        $body.css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
         navController.welcomePanel();
@@ -47,7 +48,7 @@ let app = new Sammy('#container', function() {
         feedController.createPost();
 
 
-        $('#wrapper').css({
+        $body.css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
     });
@@ -56,7 +57,7 @@ let app = new Sammy('#container', function() {
         let wrapperBackgroundUrl = '../images/home-background.jpg';
         homeController.profilePanel();
 
-        $('#wrapper').css({
+        $body.css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
     });

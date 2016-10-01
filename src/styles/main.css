@@ -26,6 +26,10 @@ body {
     margin-right: 15px;
 }
 
+.navbar {
+    border-radius: 0px;
+}
+
 .authorisation {
     text-align: center;
 }
