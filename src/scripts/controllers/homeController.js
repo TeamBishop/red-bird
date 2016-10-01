@@ -15,12 +15,24 @@ const $containerElement = $('#container'),
 
 
 function generateHome() {
-
     homePanel().then(()=>{
+        let image = 'null';
+
+        $('#post-img').on('change', function () {
+            if (this.files && this.files[0]) {
+                var imageReader = new FileReader();
+                imageReader.onload = function(e) {
+                    image = '' + e.target.result;
+                };
+                imageReader.readAsDataURL(this.files[0]);
+            }
+        } );
+
+        console.log('loadded');
+
         $('#post-btn').on('click', function() {
             let username = localStorage.getItem(USER_ID),
                 message = $('#post-context').val(),
-                image = $('#post-image').val(),
                 context = {
                     message: message,
                     image: image
@@ -28,7 +40,7 @@ function generateHome() {
 
             $('#post-context').val('');
                 
-                // Must add some kind of validation !
+            // Must add some kind of validation !
 
             homeService
             .sendPost(username, context)
@@ -64,11 +76,23 @@ function leftSidePanel() {
         });
 }
 
-// function getPost() {
+// BETA VERSION - DOESN'T WORK CORRECT!
+function getAllPost() {
+//     loadTemplate('post-feed.html')
+//         .then((htmlTemplate)=>{
 
-// }
+//             //console.log(someObj[0]._id);
+//             console.log(htmlTemplate);
+            
+//             let templateFunc = handlebars.compile(htmlTemplate);
+//             console.log(templateFunc());
+            
+//             let html = templateFunc(someObj);
+//             //console.log(html);
+            
+//             // $("#container").html(html);
+//             $('.post-feed').html(html);
+//         });
+}
 
-
-
-
-export { generateHome, profilePanel, leftSidePanel };
+export { generateHome, getAllPost, profilePanel, leftSidePanel };
