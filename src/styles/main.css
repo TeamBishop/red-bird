@@ -37,6 +37,10 @@ body {
     border-radius: 50px;
 }
 
+#nav-panel #search-btn {
+    border-radius: 0;
+}
+
 #nav-panel .navbar-right>li:last-child {
     margin-right: 15px;
 }
