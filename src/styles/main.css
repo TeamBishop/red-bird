@@ -126,7 +126,7 @@ div#profile .edit-profile-buttons {
 
 #post-context {
     border-radius: 20px;
-    border-top-left-radius: 0px;    
+    border-top-left-radius: 0px;
     background-color: pink;
     padding: 10px;
     padding-bottom: 40px;
@@ -135,19 +135,23 @@ div#profile .edit-profile-buttons {
     display: block;
 }
 
-#post-message{
-    width: 50%; 
+#post-message {
+    width: 50%;
     position: relative;
     left: 50%;
     /*top:5%;*/
-    transform: translate(-50%,0%); 
+    transform: translate(-50%, 0%);
 }
-#post-btn, #post-img {
+
+#post-btn,
+#post-img {
     border-radius: 20px;
-    background-color:hotpink;    
+    background-color: hotpink;
     margin-top: 10px;
     float: right;
 }
+
+
 /*MUST BE DELETED-END*/
 
 
