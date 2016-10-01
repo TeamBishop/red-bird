@@ -50,6 +50,12 @@ body {
     background-color: #FFE2E7;
 }
 
+.navbar-right .navbar-form {
+    border-width: 0px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
 .authorisation {
     text-align: center;
 }
@@ -216,14 +222,15 @@ div#profile .edit-profile-buttons {
 }
 
 #post-img {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
-#post-img + label {
+
+#post-img+label {
     font-size: 1.25em;
     font-weight: 700;
     color: white;
@@ -231,8 +238,8 @@ div#profile .edit-profile-buttons {
     display: inline-block;
 }
 
-#post-img:focus + label,
-#post-img + label:hover {
+#post-img:focus+label,
+#post-img+label:hover {
     background-color: red;
 }
 
@@ -244,13 +251,15 @@ div#profile .edit-profile-buttons {
 }
 
 .post {
-    color:black;
+    color: black;
 }
+
 .post-feed {
     margin-top: 7%;
-    background-color:pink;
+    background-color: pink;
     /*height: 200px;*/
 }
+
 
 /*MUST BE DELETED-END*/
 
