@@ -4,6 +4,7 @@ import $ from 'jquery';
 import { loadTemplate } from 'template';
 
 const $containerElement = $('#container');
+const $containerLeftElement = $('#container-left');
 
 function homePanel() {
     loadTemplate('news-feed.html')
@@ -19,4 +20,11 @@ function profilePanel() {
         });
 }
 
-export { homePanel, profilePanel };
+function leftSidePanel() {
+    loadTemplate('profile-side-panel.html')
+        .then((htmlTemplate) => {
+            $containerLeftElement.html(htmlTemplate);
+        });
+}
+
+export { homePanel, profilePanel, leftSidePanel };

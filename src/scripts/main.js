@@ -12,11 +12,24 @@ let $body = $('body');
 let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/authorise' } }, function() {
         const $navPanel = $('nav-panel');
-
-        if (hasLoggedInUser() && $navPanel.html() === undefined) {
-            navController.logedPanel();
+        const $profileSidePanel = $('#container-left');
+        console.log($profileSidePanel.html());
+        if (hasLoggedInUser()) {
+            if ($navPanel.html() === undefined) {
+                navController.logedPanel();
+            }
+            if ($profileSidePanel.html() === undefined || $profileSidePanel.html() === '') {
+                homeController.leftSidePanel();
+            }
 
             let wrapperBackgroundUrl = '../images/home-background.jpg';
+            $body.css({
+                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+            });
+        } else {
+            $profileSidePanel.html('');
+
+            let wrapperBackgroundUrl = '../images/login-background.jpg';
             $body.css({
                 'background-image': 'url(' + wrapperBackgroundUrl + ')',
             });
@@ -24,13 +37,13 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/authorise', function(context) {
+        navController.welcomePanel();
+        userController.authoriseUser(context);
+
         let wrapperBackgroundUrl = '../images/login-background.jpg';
         $body.css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
         });
-        navController.welcomePanel();
-        userController.authoriseUser(context);
-
     });
 
     this.get('#/', function() {
@@ -42,24 +55,14 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/home', function() {
-        let wrapperBackgroundUrl = '../images/home-background.jpg';
         homeController.homePanel();
         navController.logedPanel();
         feedController.createPost();
         feedController.getFeed();
-
-        $body.css({
-            'background-image': 'url(' + wrapperBackgroundUrl + ')',
-        });
     });
 
     this.get('#/profile', function() {
-        let wrapperBackgroundUrl = '../images/home-background.jpg';
         homeController.profilePanel();
-
-        $body.css({
-            'background-image': 'url(' + wrapperBackgroundUrl + ')',
-        });
     });
 
     this.get('#/logout', userController.logOutUser);
