@@ -25,6 +25,8 @@ function createPost() {
                     message: message,
                     image: image
                 };
+
+            $('#post-context').val('');
             
             // Must add some kind of validation !
 
