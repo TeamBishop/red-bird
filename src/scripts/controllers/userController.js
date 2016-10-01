@@ -13,12 +13,12 @@ function authoriseUser(context) {
     loadTemplate('authorise.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
-            signUp(context);
+            signUpUser(context);
             logInUser(context);
         });
 }
 
-function signUp(context) {
+function signUpUser(context) {
     $('#btn-signup').on('click', function() {
         let username = $('#tb-username-signup').val();
         let password = $('#tb-password-signup').val();
@@ -37,7 +37,7 @@ function signUp(context) {
                 context.redirect('#/');
                 notifier.notifySuccess('Signed up');
             }, (error) => {
-                console.log('Error in sign up');
+                notifier.notifyError('Username is already used');
             });
     });
 }
@@ -60,7 +60,7 @@ function logInUser(context) {
                 context.redirect('#/');
                 notifier.notifySuccess('Logged in');
             }, (error) => {
-                notifier.notifyError('Incorrect username or password!');
+                notifier.notifyError('Incorrect username or password');
             });
     });
 }
@@ -75,7 +75,7 @@ function logOutUser(context) {
 
 function isValidUsername(username) {
     if (dataValidator.stringValidation.isEmpty(username)) {
-        notifier.notifyError('Username is required!');
+        notifier.notifyError('Username is required');
         return false;
     }
 
