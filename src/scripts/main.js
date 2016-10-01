@@ -5,7 +5,7 @@ import { hasLoggedInUser } from 'userService';
 import * as userController from 'userController';
 import * as homeController from 'homeController';
 import * as navController from 'navController';
-import * as feedController from 'feedController';
+//import * as feedController from 'feedController';
 
 let $body = $('body');
 
@@ -60,10 +60,10 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/home', function() {
-        homeController.homePanel();
+        homeController.generateHome();
         navController.logedPanel();
-        feedController.createPost();
-        feedController.getFeed();
+        //feedController.createPost();
+        //feedController.getFeed();
     });
 
     this.get('#/profile', function() {

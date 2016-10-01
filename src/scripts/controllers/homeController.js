@@ -1,13 +1,50 @@
 'use strict';
 
 import $ from 'jquery';
-import { loadTemplate } from 'template';
 
-const $containerElement = $('#container');
-const $containerLeftElement = $('#container-left');
+import handlebars from 'handlebars';
+import * as notifier from 'notifier';
+
+import * as homeService from 'homeService';
+import { loadTemplate } from 'template';
+import { dataValidator } from 'dataValidator';
+
+const $containerElement = $('#container'),
+    $containerLeftElement = $('#container-left'),
+    USER_ID = 'x-user-id';
+
+
+function generateHome() {
+
+    homePanel().then(()=>{
+        $('#post-btn').on('click', function() {
+            let username = localStorage.getItem(USER_ID),
+                message = $('#post-context').val(),
+                image = $('#post-image').val(),
+                context = {
+                    message: message,
+                    image: image
+                };
+
+            $('#post-context').val('');
+                
+                // Must add some kind of validation !
+
+            homeService
+            .sendPost(username, context)
+            .then((responseData) => {
+                console.log(responseData);
+                            
+            }, (error) => {
+                console.log(error);
+            });
+        });
+    });
+}
+
 
 function homePanel() {
-    loadTemplate('news-feed.html')
+    return loadTemplate('news-feed.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
         });
@@ -34,4 +71,15 @@ function leftSidePanel() {
         });
 }
 
+<<<<<<< HEAD
 export { homePanel, profilePanel, leftSidePanel, editProfilePanel };
+=======
+// function getPost() {
+
+// }
+
+
+
+
+export { generateHome, profilePanel, leftSidePanel };
+>>>>>>> 6f19fb7f38043471d4aea901a84471a348bfbe6f
