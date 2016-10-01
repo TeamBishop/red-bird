@@ -1,7 +1,8 @@
 'use strict';
 
 import $ from 'jquery';
-
+//not sure 
+import { getByUserId } from 'profileService';
 import * as httpRequester from 'httpRequester';
 import { appCredentials, baseServiceUrl, baseAppDataUrl } from 'appConstants';
 import { getBase64Code } from 'utils';
@@ -22,16 +23,27 @@ function createPost(userID, content) {
             content: content
         };
 
+
+
     return new Promise((resolve, reject) => {
-        httpRequester.postJSON(url, {
-            headers: headers,
-            data: postData
-        }).then((responseData) => {
-            resolve(responseData);
-        },(error) => {
-            reject(error);
-        });
+        
+        getByUserId(userID)
+            .then((user) => {     
+                console.log(user);                  
+                postData['user'] = user[0].firstname + ' ' + user[0].lastname;
+
+                httpRequester.postJSON(url, {
+                    headers: headers,
+                    data: postData
+                })
+                .then((responseData) => {
+                    resolve(responseData);
+                },(error) => {
+                    reject(error);
+                });
+            });
     });
+
 }
 
 

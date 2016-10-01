@@ -1,7 +1,9 @@
 'use strict';
 
 import * as httpRequester from 'httpRequester';
-import { baseServiceUrl } from 'appConstants';
+
+import { appCredentials, baseServiceUrl, baseAppDataUrl } from 'appConstants';
+
 
 const AUTH_TOKEN_KEY = 'x-auth-token',
     USER_ID = 'x-user-id';
@@ -76,7 +78,7 @@ function getByName(name) {
 function makeQuery(queryString) {
     let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles/?query=' + queryString;
     let headers = {
-        'Authorization': localStorage.getItem(AUTH_TOKEN_KEY)
+        'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
     };
 
     return new Promise((resolve, reject) => {
