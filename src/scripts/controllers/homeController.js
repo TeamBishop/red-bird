@@ -14,6 +14,13 @@ function homePanel() {
 }
 
 function profilePanel() {
+    loadTemplate('profile-template.html')
+        .then((htmlTemplate) => {
+            $containerElement.html(htmlTemplate);
+        });
+}
+
+function editProfilePanel() {
     loadTemplate('profile.html')
         .then((htmlTemplate) => {
             $containerElement.html(htmlTemplate);
@@ -27,4 +34,4 @@ function leftSidePanel() {
         });
 }
 
-export { homePanel, profilePanel, leftSidePanel };
+export { homePanel, profilePanel, leftSidePanel, editProfilePanel };
