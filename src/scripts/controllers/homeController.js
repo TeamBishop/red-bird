@@ -16,7 +16,7 @@ const $containerElement = $('#container'),
 
 function generateHome() {
 
-    homePanel().then(()=>{
+    homePanel().then(() => {
         $('#post-btn').on('click', function() {
             let username = localStorage.getItem(USER_ID),
                 message = $('#post-context').val(),
@@ -27,17 +27,17 @@ function generateHome() {
                 };
 
             $('#post-context').val('');
-                
-                // Must add some kind of validation !
+
+            // Must add some kind of validation !
 
             homeService
-            .sendPost(username, context)
-            .then((responseData) => {
-                console.log(responseData);
-                            
-            }, (error) => {
-                console.log(error);
-            });
+                .sendPost(username, context)
+                .then((responseData) => {
+                    console.log(responseData);
+
+                }, (error) => {
+                    console.log(error);
+                });
         });
     });
 }
@@ -71,15 +71,4 @@ function leftSidePanel() {
         });
 }
 
-<<<<<<< HEAD
-export { homePanel, profilePanel, leftSidePanel, editProfilePanel };
-=======
-// function getPost() {
-
-// }
-
-
-
-
-export { generateHome, profilePanel, leftSidePanel };
->>>>>>> 6f19fb7f38043471d4aea901a84471a348bfbe6f
+export { generateHome, profilePanel, leftSidePanel, editProfilePanel };
