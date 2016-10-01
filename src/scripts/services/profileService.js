@@ -3,21 +3,37 @@
 import * as httpRequester from 'httpRequester';
 
 import { appCredentials, baseServiceUrl, baseAppDataUrl } from 'appConstants';
+import { dataValidator } from 'dataValidator';
+import { storage } from 'storage';
 
 
 const AUTH_TOKEN_KEY = 'x-auth-token',
-    USER_ID = 'x-user-id';
+    USER_ID_KEY = 'x-user-id',
+    NAME_MIN_LENGTH = 3,
+    NAME_MAX_LENGTH = 20;
 
 function saveProfile(data) {
-    data = data || {};
+    validateProfileData(data);
 
-    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles';
-    let headers = {
-        'Authorization': localStorage.getItem(AUTH_TOKEN_KEY)
+    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles',
+        headers = {
+            'Authorization': 'Kinvey' + ' ' + storage.getItem(AUTH_TOKEN_KEY)
+        };
+
+    data.location = data.location || {};
+    data = {
+        avatarSrc: data.avatarSrc || '',
+        firstname: data.firstname,
+        lastname: data.lastname,
+        job: data.job || '',
+        location: {
+            city: data.location.city || '',
+            country: data.location.country || ''
+        },
+        userId: storage.getItem(USER_ID_KEY),
     };
-    data.userId = localStorage.getItem(USER_ID);
 
-    return Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         httpRequester.postJSON(url, {
                 headers: headers,
                 data: data
@@ -31,15 +47,27 @@ function saveProfile(data) {
 }
 
 function updateProfile(data, profileId) {
-    data = data || {};
+    validateProfileData(data);
 
-    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles' + profileId;
-    let headers = {
-        'Authorization': localStorage.getItem(AUTH_TOKEN_KEY)
+    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles' + profileId,
+        headers = {
+            'Authorization': 'Kinvey' + ' ' + storage.getItem(AUTH_TOKEN_KEY)
+        };
+
+    data.location = data.location || {};
+    data = {
+        avatarSrc: data.avatarSrc || '',
+        firstname: data.firstname,
+        lastname: data.lastname,
+        job: data.job || '',
+        location: {
+            city: data.location.city || '',
+            country: data.location.country || ''
+        },
+        userId: storage.getItem(USER_ID_KEY),
     };
-    data.userId = localStorage.getItem(USER_ID);
 
-    return Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         httpRequester.put(url, {
                 contentType: 'application/json',
                 headers: headers,
@@ -65,7 +93,7 @@ function getByName(name) {
     let nameTokens = name.split(' ');
     let queryString;
     if (nameTokens.length === 1) {
-        queryString = '{"$or":[{"firstName":' + name + ', "lastName":' + name + '}]}';
+        queryString = '{"$or":[{"firstName":' + name + '}, { "lastName":' + name + '}]}';
     } else if (nameTokens.length === 2) {
         queryString = '{"$and":[{"firstName":' + name + ', "lastName":' + name + '}]}';
     } else {
@@ -78,7 +106,7 @@ function getByName(name) {
 function makeQuery(queryString) {
     let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles/?query=' + queryString;
     let headers = {
-        'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
+        'Authorization': 'Kinvey' + ' ' + storage.getItem(AUTH_TOKEN_KEY)
     };
 
     return new Promise((resolve, reject) => {
@@ -91,6 +119,20 @@ function makeQuery(queryString) {
                 reject(error);
             });
     });
+}
+
+function validateProfileData(data) {
+    if (!dataValidator.isValidName(data.firstname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid first name'
+        });
+    }
+
+    if (!dataValidator.isValidName(data.lastname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid last name'
+        });
+    }
 }
 
 export {
