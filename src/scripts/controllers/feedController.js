@@ -25,18 +25,28 @@ function createPost() {
                     message: message,
                     image: image
                 };
+
+            $('#post-context').val('');
             
             // Must add some kind of validation !
 
             feedService.createPost(username, context)
-                .then((responseData) => {
-                    console.log(responseData);
-                    
-                }, (error) => {
-                    console.log(error);
-                });
+                        .then((responseData) => {
+                            console.log(responseData);
+                            
+                        }, (error) => {
+                            console.log(error);
+                        });
         });
     });
+
+    // function getPost() {
+
+    // }
+
+
+
+
 }
 
 export { createPost };

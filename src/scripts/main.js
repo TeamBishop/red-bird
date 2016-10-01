@@ -46,7 +46,7 @@ let app = new Sammy('#container', function() {
         homeController.homePanel();
         navController.logedPanel();
         feedController.createPost();
-
+        feedController.getFeed();
 
         $body.css({
             'background-image': 'url(' + wrapperBackgroundUrl + ')',
