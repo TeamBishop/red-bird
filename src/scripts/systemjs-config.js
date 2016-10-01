@@ -18,6 +18,7 @@ SystemJS.config({
         'userService': './scripts/services/userService.js',
         'profileService': './scripts/services/profileService.js',
         'utils': './scripts/helpers/utils.js',
+        'storage': './scripts/helpers/storage.js',
         'Sammy': '../bower_components/sammy/lib/sammy.js',
         'userController': './scripts/controllers/userController.js',
         'template': './scripts/helpers/template.js',
