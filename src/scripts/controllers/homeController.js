@@ -76,6 +76,13 @@ function leftSidePanel() {
         });
 }
 
+function editProfilePanel() {
+    loadTemplate('profile.html')
+        .then((htmlTemplate) => {
+            $containerElement.html(htmlTemplate);
+        });
+}
+
 // BETA VERSION - DOESN'T WORK CORRECT!
 function getAllPost() {
     //     loadTemplate('post-feed.html')
@@ -95,4 +102,4 @@ function getAllPost() {
     //         });
 }
 
-export { generateHome, getAllPost, profilePanel, leftSidePanel };
+export { generateHome, getAllPost, profilePanel, leftSidePanel, editProfilePanel };
