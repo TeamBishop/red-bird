@@ -12,7 +12,8 @@ let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/authorise' } }, function() {
         const $navPanel = $('nav-panel');
         const $profileSidePanel = $('#container-left');
-        console.log($profileSidePanel.html());
+        const that = this;
+
         if (hasLoggedInUser()) {
             if ($navPanel.html() === undefined) {
                 navController.logedPanel();
@@ -20,6 +21,10 @@ let app = new Sammy('#container', function() {
             if ($profileSidePanel.html() === undefined || $profileSidePanel.html() === '') {
                 homeController.leftSidePanel();
             }
+
+            $profileSidePanel.on('click', '#profile-panel', function() {
+                that.redirect('#/profile');
+            });
 
             let wrapperBackgroundUrl = '../images/home-background.jpg';
             $body.css({
@@ -62,6 +67,10 @@ let app = new Sammy('#container', function() {
 
     this.get('#/profile', function() {
         homeController.profilePanel();
+    });
+
+    this.get('#/profile/edit', function() {
+        homeController.editProfilePanel();
     });
 
     this.get('#/logout', userController.logOutUser);

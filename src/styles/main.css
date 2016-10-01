@@ -131,7 +131,6 @@ div#profile .edit-profile-buttons {
 .containers {
     float: left;
     border: 1px solid yellow;
-    color: pink;
     margin: 1px;
 }
 
@@ -252,26 +251,24 @@ div#profile .edit-profile-buttons {
 /*MUST BE DELETED-END*/
 
 
-/* wild magic do not touch, delete only if too much pink! */
+/* profile-template */
 
-::-webkit-input-placeholder {
-    /* WebKit, Blink, Edge */
-    color: hotpink;
+#container .col-md-offset-3 {
+    margin-left: 0;
 }
 
-:-moz-placeholder {
-    /* Mozilla Firefox 4 to 18 */
-    color: hotpink;
-    opacity: 1;
+#container .col-md-6 {
+    width: auto;
 }
 
-::-moz-placeholder {
-    /* Mozilla Firefox 19+ */
-    color: hotpink;
-    opacity: 1;
+#container .container {
+    width: auto;
 }
 
-:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: hotpink;
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
 }
