@@ -21,10 +21,10 @@ function generateHome() {
     homePanel().then(() => {
         let image = '';
 
-        $('#post-img').on('click', function() {
+        $('#post-img').on('change', function() {
             console.log("called img btn");
             
-            notifier.notifySuccess('YOU DID IT');
+            //notifier.notifySuccess('YOU DID IT');
 
             if (this.files && this.files[0]) {
                 notifier.notifySuccess('YOU DID IT Again');
@@ -34,7 +34,7 @@ function generateHome() {
                     console.log(e);
                     notifier.notifySuccess('YOU DID IT Again');
                     
-                    if(e.total <= 5000) {
+                    if(e.total <= 50000) {
                         image = '' + e.target.result;
                     }
                     else{
