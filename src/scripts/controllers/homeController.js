@@ -16,7 +16,7 @@ const $containerElement = $('#container'),
 
 function generateHome() {
     homePanel().then(() => {
-        let image = 'null';
+        let image = null;
 
         $('#post-img').on('change', function() {
             if (this.files && this.files[0]) {
@@ -87,44 +87,21 @@ function editProfilePanel() {
 function getAllPost() {
     loadTemplate('post-feed.html')
         .then((htmlTemplate) => {
-            let someObj = {
-                data: [{
-                    "_id": "57eeaae536d8236c159d547f",
-                    "user": "57ee720e636f8a2d0e3b9da7",
-                    "content": {
-                        "message": "And....."
-                    },
-                    "_acl": {
-                        "creator": "57ee720e636f8a2d0e3b9da7"
-                    },
-                    "_kmd": {
-                        "lmt": "2016-09-30T18:11:49.020Z",
-                        "ect": "2016-09-30T18:11:49.020Z"
-                    }
-                }, {
-                    "_id": "57eeac2ae40d77896e634637",
-                    "user": "57ee45eb98206aa20c5414dc",
-                    "content": {
-                        "message": ""
-                    },
-                    "_acl": {
-                        "creator": "57ee45eb98206aa20c5414dc"
-                    },
-                    "_kmd": {
-                        "lmt": "2016-09-30T18:17:14.348Z",
-                        "ect": "2016-09-30T18:17:14.348Z"
-                    }
-                }]
-            };
 
-            let templateFunc = handlebars.compile(htmlTemplate);
-            console.log(templateFunc(someObj));
+            homeService.getAllPost().then((data) => {
+                let feedData = {
+                    data: data 
+                };
+                let templateFunc = handlebars.compile(htmlTemplate);
+                //console.log(templateFunc(feedData));
 
-            let html = templateFunc(someObj);
-            //console.log(html);
+                let html = templateFunc(feedData);
+                //console.log(html);
 
-            // $("#container").html(html);
-            $('.post-feed').html(html);
+                // $("#container").html(html);
+                $('.post-feed').html(html);
+            });
+
         });
 }
 

@@ -61,4 +61,4 @@ function getAllPost(){
     });    
 }
 
-export { sendPost };
+export { sendPost, getAllPost };
