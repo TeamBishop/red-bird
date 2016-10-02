@@ -225,7 +225,14 @@ div#profile .edit-profile-buttons {
 
 
 /* news feed template */
-
+#post-img {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
 body {
     background: #fafafa;
 }
@@ -289,11 +296,11 @@ body .no-padding {
     float: left;
     font-family: Lato;
     font-size: 14px;
-    height: 100px;
+    height: 140px;
     letter-spacing: 0.3px;
     padding: 20px;
     width: 100%;
-    resize: vertical;
+    resize: none;
     outline: none;
     border: 1px solid #F2F2F2;
 }
@@ -310,7 +317,7 @@ body .no-padding {
     float: left;
 }
 
-.status-upload ul>li>a {
+.status-upload ul>li>label a {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
@@ -321,7 +328,7 @@ body .no-padding {
     font-size: 14px;
     height: 30px;
     line-height: 30px;
-    margin: 10px 0 10px 10px;
+    margin: 10px 0 0px 0px;
     text-align: center;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;

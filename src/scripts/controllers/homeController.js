@@ -20,7 +20,9 @@ function generateHome() {
     homePanel().then(() => {
         let image = '';
 
-        $('#post-img').on('change', function() {
+        $('#post-img').on('click', function() {
+            console.log("called img btn");
+            
             if (this.files && this.files[0]) {
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
