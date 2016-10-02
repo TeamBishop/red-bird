@@ -13,7 +13,17 @@ const AUTH_TOKEN_KEY = 'x-auth-token',
     NAME_MAX_LENGTH = 20;
 
 function saveProfile(data) {
-    validateProfileData(data);
+    if (!dataValidator.isValidName(data.firstname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid first name'
+        });
+    }
+
+    if (!dataValidator.isValidName(data.lastname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid last name'
+        });
+    }
 
     let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles',
         headers = {
@@ -25,6 +35,7 @@ function saveProfile(data) {
         avatarSrc: data.avatarSrc || '',
         firstname: data.firstname,
         lastname: data.lastname,
+        gender: data.gender || 'Other',
         job: data.job || '',
         location: {
             city: data.location.city || '',

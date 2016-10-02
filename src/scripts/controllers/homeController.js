@@ -10,6 +10,7 @@ import * as notifier from 'notifier';
 import * as homeService from 'homeService';
 import { loadTemplate } from 'template';
 import { dataValidator } from 'dataValidator';
+// import { uploadImage } from 'utils';
 
 const $containerElement = $('#container'),
     $containerLeftElement = $('#container-left'),
@@ -24,6 +25,8 @@ function generateHome() {
             console.log("called img btn");
             
             notifier.notifySuccess('YOU DID IT');
+               notifier.notifySuccess('YOU DID IT');
+
             if (this.files && this.files[0]) {
                 notifier.notifySuccess('YOU DID IT Again');
                 
@@ -98,7 +101,6 @@ function editProfilePanel() {
         });
 }
 
-// BETA VERSION - DOESN'T WORK CORRECT!
 function getAllPost() {
     loadTemplate('post-feed.html')
         .then((htmlTemplate) => {
@@ -108,12 +110,7 @@ function getAllPost() {
                     data: data 
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
-                // console.log(templateFunc(feedData));
-
                 let html = templateFunc(feedData);
-                console.log(html);
-
-                // // $("#container").html(html);
                 $('.post-feed').html(html);
             });
         });

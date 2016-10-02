@@ -90,12 +90,11 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/profile', function() {
-        // homeController.profilePanel();
         profileController.loadProfile();
     });
 
     this.get('#/profile/edit', function() {
-        homeController.editProfilePanel();
+        profileController.updateProfile();
     });
 
 });
