@@ -20,11 +20,24 @@ function generateHome() {
     homePanel().then(() => {
         let image = '';
 
-        $('#post-img').on('change', function() {
+        $('#post-img').on('click', function() {
+            console.log("called img btn");
+            
+            notifier.notifySuccess('YOU DID IT');
             if (this.files && this.files[0]) {
+                notifier.notifySuccess('YOU DID IT Again');
+                
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
-                    image = '' + e.target.result;
+                    console.log(e);
+                    notifier.notifySuccess('YOU DID IT Again');
+                    
+                    if(e.total <= 5000) {
+                        image = '' + e.target.result;
+                    }
+                    else{
+                        notifier.notifyError("Picture must be lower than 50kb!");
+                    }
                 };
                 imageReader.readAsDataURL(this.files[0]);
             }
