@@ -15,7 +15,12 @@
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
-                                    {{#if birthday}}
+                                    {{#if gender}}
+                                    <tr>
+                                        <td><span class="fui-heart"></span> Gender:</td>
+                                        <td>{{gender}}</td>
+                                    </tr>
+                                    {{/if}} {{#if birthday}}
                                     <tr>
                                         <td><span class="fui-calendar"></span> Date of birth:</td>
                                         <td>{{birthday}}</td>

@@ -85,22 +85,16 @@ function editProfilePanel() {
         });
 }
 
-// BETA VERSION - DOESN'T WORK CORRECT!
 function getAllPost() {
     loadTemplate('post-feed.html')
         .then((htmlTemplate) => {
 
             homeService.getAllPost().then((data) => {
                 let feedData = {
-                    data: data 
+                    data: data
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
-                // console.log(templateFunc(feedData));
-
                 let html = templateFunc(feedData);
-                console.log(html);
-
-                // // $("#container").html(html);
                 $('.post-feed').html(html);
             });
         });

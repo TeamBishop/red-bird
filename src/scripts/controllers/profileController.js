@@ -24,12 +24,10 @@ function loadProfile(context) {
 }
 
 function updateProfile(context) {
-    loadTemplate('profile-template.html')
+    loadTemplate('edit-profile.html')
         .then((htmlTemplate) => {
             $('#container').html(htmlTemplate);
-
-
         });
 }
 
-export { loadProfile, updateProfile }
+export { loadProfile, updateProfile };

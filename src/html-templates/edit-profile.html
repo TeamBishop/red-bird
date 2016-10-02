@@ -1,63 +1,57 @@
-<div class="row">
+<!--<div class="row">
     <div class="col-md-4 col-md-offset-4">
         <form class="form-horizontal" role="form">
             <fieldset>
+                <legend>Edit Profile Details</legend>
 
-                <!-- Form Name -->
-                <legend>Address Details</legend>
-
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Line 1</label>
+                    <label class="col-sm-2 control-label" for="image-field">Upload profile picture: </label>
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Address Line 1" class="form-control">
+                        <input type="file" class="form-control" id="image-field">
                     </div>
                 </div>
 
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Line 2</label>
+                    <label class="col-sm-2 control-label" for="firstname-field">First name: </label>
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Address Line 2" class="form-control">
+                        <input type="text" class="form-control" id="firstname-field">
                     </div>
                 </div>
 
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">City</label>
+                    <label class="col-sm-2 control-label" for="lastname-field">Last name: </label>
                     <div class="col-sm-10">
-                        <input type="text" placeholder="City" class="form-control">
+                        <input type="text" class="form-control" id="lastname-field">
                     </div>
                 </div>
 
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">State</label>
-                    <div class="col-sm-4">
-                        <input type="text" placeholder="State" class="form-control">
-                    </div>
-
-                    <label class="col-sm-2 control-label" for="textinput">Postcode</label>
-                    <div class="col-sm-4">
-                        <input type="text" placeholder="Post Code" class="form-control">
+                    <label class="col-sm-2 control-label">Gender:</label>
+                    <div class="col-sm-10">
+                        <input type="radio" name="gender" value="male">Male
+                        <input type="radio" name="gender" value="female">Female
+                        <input type="radio" name="gender" value="other">Other
                     </div>
                 </div>
 
-
-
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="textinput">Country</label>
+                    <label class="col-sm-2 control-label" for="city-field">City:</label>
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Country" class="form-control">
+                        <input type="text" class="form-control" id="city-field">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="country-field">Country:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="country-field">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a type="submit" class="btn btn-primary">Save</a>
                         </div>
                     </div>
                 </div>
@@ -65,6 +59,80 @@
             </fieldset>
         </form>
     </div>
-    <!-- /.col-lg-12 -->
+</div>-->
+
+<div class="container">
+    <span class="page-header">Edit Profile</span>
+    <div class="row">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">First name:</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text" id>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Last name:</label>
+                <div class="col-lg-8">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Company:</label>
+                <div class="col-lg-8">
+                    <input class="form-control" value="" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Email:</label>
+                <div class="col-lg-8">
+                    <input class="form-control" value="janesemail@gmail.com" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Time Zone:</label>
+                <div class="col-lg-8">
+                    <div class="ui-select">
+                        <select id="user_time_zone" class="form-control">
+                <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                <option value="Alaska">(GMT-09:00) Alaska</option>
+                <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                <option value="Arizona">(GMT-07:00) Arizona</option>
+                <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+              </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Username:</label>
+                <div class="col-md-8">
+                    <input class="form-control" value="janeuser" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Password:</label>
+                <div class="col-md-8">
+                    <input class="form-control" value="11111122333" type="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Confirm password:</label>
+                <div class="col-md-8">
+                    <input class="form-control" value="11111122333" type="password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-8">
+                    <input class="btn btn-primary" value="Save Changes" type="button">
+                    <span></span>
+                    <input class="btn btn-default" value="Cancel" type="reset">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<!-- /.row -->
+</div>

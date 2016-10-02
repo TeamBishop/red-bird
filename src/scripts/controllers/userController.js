@@ -26,13 +26,16 @@ function signUpUser(context) {
 
                 userService.signUp(userData)
                     .then((responseData) => {
-                        return profileService.saveProfile(profileData);
+                        profileService.saveProfile(profileData)
+                            .then((resp) => {
+                                console.log('Success when invalid names');
+                                context.redirect('#/');
+                                notifier.notifySuccess('Signed up');
+                            }, (error) => {
+                                console.log('Error when invalid names');
+                            });
                     }, (error) => {
                         notifier.notifyError(error.message || 'Invalid data');
-                    })
-                    .then((resp) => {
-                        context.redirect('#/');
-                        notifier.notifySuccess('Signed up');
                     });
             });
         });
