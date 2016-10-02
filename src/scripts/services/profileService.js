@@ -116,9 +116,9 @@ function getByName(name) {
     let nameTokens = name.split(' ');
     let queryString;
     if (nameTokens.length === 1) {
-        queryString = '{"$or":[{"firstName":' + name + '}, { "lastName":' + name + '}]}';
+        queryString = '{"$or":[{"firstname":' + '"' + name + '"' + '}, { "lastname":' + '"' + name + '"' + '}]}';
     } else if (nameTokens.length === 2) {
-        queryString = '{"$and":[{"firstName":' + name + ', "lastName":' + name + '}]}';
+        queryString = '{"$and":[{"firstname":' + '"' + nameTokens[0] + '"' + ', "lastname":' + '"' + nameTokens[1] + '"' + '}]}';
     } else {
         queryString = '{}';
     }

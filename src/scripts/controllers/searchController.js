@@ -9,24 +9,28 @@ import { loadTemplate } from 'template';
 import { storage } from 'storage';
 
 function searchUsers() {
-
     loadTemplate('search.html')
         .then((htmlTemplate) => {
             return $('#container').html(htmlTemplate);
-        });
-
-    $('#btn-search').on('click', function() {
-        let searchedName = $('#search-field').val();
-        loadTemplate('search-user-result.html')
-            .then((htmlTemplate) => {
-                let template = handlebars.compile(htmlTemplate);
-
-                profileService.getByName(searchedName)
-                    .then((responseData) => {
-                        $('#container').html(template(responseData));
+        })
+        .then(() => {
+            $('#btn-search').on('click', function() {
+                loadTemplate('search-user-result.html')
+                    .then((htmlTemplate) => {
+                        let searchedName = $('#search-field').val();
+                        let template = handlebars.compile(htmlTemplate);
+                        profileService.getByName(searchedName)
+                            .then((responseData) => {
+                                return Promise.resolve($('#search-results').html(template({ profiles: responseData })));
+                            })
+                            .then(() => {
+                                $('#search-results').on('click', 'a.btn-follow', function() {
+                                    // console.log($(this).parents('search-result'));
+                                });
+                            });
                     });
             });
-    });
+        });
 }
 
 export { searchUsers };
