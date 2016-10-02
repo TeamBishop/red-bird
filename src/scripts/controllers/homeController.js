@@ -53,11 +53,13 @@ function generateHome() {
         $('#post-btn').on('click', function() {
             let username = localStorage.getItem(USER_ID),
                 message = $('#post-context').val(),
+                tags = makeHashTag(message),
                 context = {
                     message: message,
-                    image: image
+                    image: image,
+                    tags: tags
                 };
-
+            
             $('#post-context').val('');
 
             // Must add some kind of validation !
@@ -79,7 +81,6 @@ function generateHome() {
         
     });
 }
-
 
 function homePanel() {
     return loadTemplate('news-feed.html')
@@ -157,6 +158,54 @@ function updatePostFeed() {
         }
     });
 
+}
+
+function makeHashTag(input) {
+    let collection = [],
+        start = 0,
+        end,
+        isLoop = true;
+
+    if(input[0] === '#') {
+        start = 0;
+        end = input.indexOf(' ', start+1);
+
+        if(end === -1) {
+            end = input.length;
+            collection.push(input.substring(start+1, end).toLowerCase());
+        }
+
+        collection.push(input.substring(start, end).toLowerCase());
+
+        start = end;
+    }
+        
+    while (isLoop) {
+
+        start = input.indexOf(' #', start);
+
+        if(start === -1) {
+            isLoop = false;
+
+            break;
+        }
+
+        end = input.indexOf(' ', start+2);
+
+        if(end === -1) {
+            end = input.length;
+            collection.push(input.substring(start+1, end).toLowerCase());
+            isLoop = false;
+
+            break;
+        }
+
+        collection.push(input.substring(start+1, end).toLowerCase());
+
+        start = end;  
+    } 
+
+    return collection;  
 }
 
 export { generateHome, getPost, profilePanel, leftSidePanel, editProfilePanel };
