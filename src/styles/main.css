@@ -336,7 +336,6 @@ body .no-padding {
 }
 
 
-
 /* search result */
 
 .glyphicon {
@@ -454,19 +453,7 @@ small {
     padding: 30px;
 }
 
-
-/*.dp {
+.dp {
     border: 10px solid #eee;
     transition: all 0.2s ease-in-out;
 }
-
-.dp:hover {
-    border: 2px solid #eee;
-    transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    /*-webkit-font-smoothing:antialiased;*/
-
-
-}
-*/
