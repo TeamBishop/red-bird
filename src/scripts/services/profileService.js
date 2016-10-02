@@ -138,7 +138,7 @@ function makeQuery(queryString) {
                 headers: headers
             })
             .then((responseData) => {
-                resolve(responseData)
+                resolve(responseData);
             }, (error) => {
                 reject(error);
             });
