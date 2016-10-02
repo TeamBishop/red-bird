@@ -9,7 +9,7 @@ import * as profileController from 'profileController';
 import { storage } from 'storage';
 
 let $body = $('body');
-
+    
 let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/login' } }, function() {
         const $navPanel = $('nav-panel');
