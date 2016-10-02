@@ -101,7 +101,7 @@ function getAllPost() {
                 //console.log(html);
 
                 // $("#container").html(html);
-                $('.post-feed').html(html);
+                $('.post-feed').append(html);
             });
 
         });
