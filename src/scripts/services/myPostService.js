@@ -12,10 +12,13 @@ const AUTH_TOKEN_KEY = 'x-auth-token',
     USER_ID = 'x-user-id';
 
 function getUserPost(){
-    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/feed-data/' + '?query={ "_acl": {"creator":"' + localStorage.getItem(USER_ID) + '}}';
-    let headers = {
-        'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
-    };
+    let path = '/feed-data/',
+        user = '?query={ "_acl": {"creator":"' + localStorage.getItem(USER_ID) + '"}}',
+        sort = '&&?query={}&sort={"_kmd":-1}',
+        url = baseServiceUrl + '/appdata/' + appCredentials.appKey + path + user + sort,
+        headers = {
+            'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
+        };
 
     return new Promise((resolve, reject) => {
         httpRequester.getJSON(url, {
@@ -28,3 +31,5 @@ function getUserPost(){
         });
     });    
 }
+
+export { getUserPost };

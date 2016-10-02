@@ -2,6 +2,7 @@ import Sammy from 'Sammy';
 import $ from 'jquery';
 
 import { hasLoggedInUser } from 'userService';
+import * as myPostController from 'myPostController';
 import * as userController from 'userController';
 import * as homeController from 'homeController';
 import * as navController from 'navController';
@@ -89,6 +90,10 @@ let app = new Sammy('#container', function() {
         homeController.getPost();
         //homeController.updatePostFeed();
         // searchController.searchUsers();
+    });
+
+    this.get('#/myposts', function() {
+        myPostController.loadCurrentUserPosts();
     });
 
     this.get('#/profile', profileController.loadProfile);
