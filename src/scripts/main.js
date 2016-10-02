@@ -53,7 +53,7 @@ let app = new Sammy('#container', function() {
             userController.signUpUser(context);
 
             $body.css({
-                'background-image': 'url(' + homeBackground + ')',
+                'background-image': 'url(' + loginBackground + ')',
             });
         }
     });
