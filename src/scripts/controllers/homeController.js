@@ -1,3 +1,5 @@
+/* globals FileReader, localStorage */
+
 'use strict';
 
 import $ from 'jquery';
