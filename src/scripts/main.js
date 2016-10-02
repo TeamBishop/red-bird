@@ -6,6 +6,7 @@ import * as userController from 'userController';
 import * as homeController from 'homeController';
 import * as navController from 'navController';
 import * as profileController from 'profileController';
+import { storage } from 'storage';
 
 let $body = $('body');
 
@@ -81,6 +82,7 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/home', function() {
+        storage.setItem('post-possition', 0);
         homeController.generateHome();
         navController.logedPanel();
         homeController.getAllPost();
