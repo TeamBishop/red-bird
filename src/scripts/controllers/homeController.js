@@ -10,6 +10,7 @@ import * as notifier from 'notifier';
 import * as homeService from 'homeService';
 import { loadTemplate } from 'template';
 import { dataValidator } from 'dataValidator';
+// import { uploadImage } from 'utils';
 
 const $containerElement = $('#container'),
     $containerLeftElement = $('#container-left'),
@@ -21,21 +22,18 @@ function generateHome() {
         let image = '';
 
         $('#post-img').on('click', function() {
-            console.log("called img btn");
-            
             notifier.notifySuccess('YOU DID IT');
             if (this.files && this.files[0]) {
                 notifier.notifySuccess('YOU DID IT Again');
-                
+
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
                     console.log(e);
                     notifier.notifySuccess('YOU DID IT Again');
-                    
-                    if(e.total <= 5000) {
+
+                    if (e.total <= 5000) {
                         image = '' + e.target.result;
-                    }
-                    else{
+                    } else {
                         notifier.notifyError("Picture must be lower than 50kb!");
                     }
                 };
