@@ -32,4 +32,19 @@ function updateProfile(context) {
         });
 }
 
-export { loadProfile, updateProfile }
+function loadSidePanel(context) {
+    loadTemplate('profile-side-panel.html')
+        .then((htmlTemplate) => {
+            let template = handlebars.compile(htmlTemplate);
+            console.log(htmlTemplate);
+            console.log(template);
+
+            profileService.getByUserId(storage.getItem(USER_ID))
+                .then((responseData) => {
+                    console.log(responseData);
+                    $('#container-left').html(template(responseData[0]));
+                });
+        });
+}
+
+export { loadProfile, updateProfile, loadSidePanel };

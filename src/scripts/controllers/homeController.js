@@ -22,20 +22,19 @@ function generateHome() {
 
         $('#post-img').on('click', function() {
             console.log("called img btn");
-            
+
             notifier.notifySuccess('YOU DID IT');
             if (this.files && this.files[0]) {
                 notifier.notifySuccess('YOU DID IT Again');
-                
+
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
                     console.log(e);
                     notifier.notifySuccess('YOU DID IT Again');
-                    
-                    if(e.total <= 5000) {
+
+                    if (e.total <= 5000) {
                         image = '' + e.target.result;
-                    }
-                    else{
+                    } else {
                         notifier.notifyError("Picture must be lower than 50kb!");
                     }
                 };
@@ -105,7 +104,7 @@ function getAllPost() {
 
             homeService.getAllPost().then((data) => {
                 let feedData = {
-                    data: data 
+                    data: data
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
                 // console.log(templateFunc(feedData));

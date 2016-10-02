@@ -6,7 +6,6 @@
 body,
 html {
     height: 100%;
-    overflow-x: hidden;
 }
 
 body {
@@ -147,6 +146,7 @@ div#profile .edit-profile-buttons {
 
 #container {
     width: 60%;
+    overflow: hidden;
 }
 
 #container-right {
@@ -228,14 +228,16 @@ div#profile .edit-profile-buttons {
 
 
 /* news feed template */
+
 #post-img {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+
 body {
     background: #fafafa;
 }
@@ -390,16 +392,14 @@ small {
 /* post template */
 
 .post-feed {
-    margin-top: 20px;
-    max-height: 440px;
+    margin-top: 15px;
+    max-height: 400px;
     overflow-y: auto;
 }
 
 .post-feed::-webkit-scrollbar {
     width: 0px;
-    /* remove scrollbar space */
     background: transparent;
-    /* optional: just make scrollbar invisible */
 }
 
 .col-sm-8 {
@@ -450,8 +450,9 @@ small {
 }
 
 .post .post-heading .meta .time {
-    margin-top: 8px;
+    display: inline-block;
     color: #999;
+    font-size: 12px;
 }
 
 .post .post-image .image {
@@ -459,7 +460,8 @@ small {
 }
 
 .post .post-description {
-    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .post .post-description p {

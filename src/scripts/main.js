@@ -20,7 +20,8 @@ let app = new Sammy('#container', function() {
                 navController.logedPanel();
             }
             if ($profileSidePanel.html() === undefined || $profileSidePanel.html() === '') {
-                homeController.leftSidePanel();
+                //homeController.leftSidePanel();
+                profileController.loadSidePanel();
             }
 
             $profileSidePanel.on('click', '#profile-panel', function() {

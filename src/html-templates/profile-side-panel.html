@@ -1,9 +1,10 @@
-<!-- TODO: Handlebar it! -->
 <div class="container todo" id="profile-panel">
-    <p class="page-header">Pesho Pesho</p>
+    <p class="page-header">{{firstname}} {{lastname}}</p>
     <div>
         <div class="text-center ">
-            <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="avatar img-circle img-thumbnail " alt="avatar ">
+            {{#if image}}
+            <img src="{{image}}" class="avatar img-circle img-thumbnail " alt="avatar "> {{else}}
+            <img src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="avatar img-circle img-thumbnail " alt="avatar "> {{/if}}
         </div>
     </div>
     <div>
@@ -11,7 +12,7 @@
             <div class="swatches-col">
                 <div class="pellete-item">
                     <dl class="palette palette-peter-river">
-                        <dt>following</dt>
+                        <dt style="font-size:small">following</dt>
                         <dt>0</dt>
                     </dl>
                 </div>
