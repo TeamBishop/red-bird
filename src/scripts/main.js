@@ -10,7 +10,7 @@ import * as searchController from 'searchController';
 import { storage } from 'storage';
 
 let $body = $('body');
-
+    
 let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/login' } }, function() {
         const $navPanel = $('nav-panel');
@@ -86,11 +86,20 @@ let app = new Sammy('#container', function() {
         storage.setItem('post-possition', 0);
         homeController.generateHome();
         navController.logedPanel();
-        homeController.getAllPost();
+        homeController.getPost();
+        //homeController.updatePostFeed();
         searchController.searchUsers();
     });
 
+<<<<<<< .mine
     this.get('#/profile', profileController.loadProfile);
+
+
+=======
+    this.get(   '#/profile', function() {
+        profileController.loadProfile();
+    });
+>>>>>>> .theirs
 
     this.get('#/search', searchController.searchUsers);
 
