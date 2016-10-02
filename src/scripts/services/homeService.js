@@ -44,7 +44,7 @@ function sendPost(userID, content) {
 }
 
 function getAllPost(){
-    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/feed-data/';
+    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/feed-data/?query={}&sort={"_kmd":-1}';
     let headers = {
         'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
     };
