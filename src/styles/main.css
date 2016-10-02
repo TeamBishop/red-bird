@@ -6,6 +6,7 @@
 body,
 html {
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -14,6 +15,10 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+#container {
+    height: 100%;
 }
 
 #container-left .container {
@@ -463,4 +468,14 @@ small {
 .dp {
     border: 10px solid #eee;
     transition: all 0.2s ease-in-out;
+}
+
+#container .myposts-feed {
+    height: 90%;
+    overflow-y: auto;
+}
+
+#container .myposts-feed::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }

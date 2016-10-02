@@ -1,3 +1,5 @@
+/* globals document */
+
 'use strict';
 
 import $ from 'jquery';
@@ -20,16 +22,19 @@ function loadCurrentUserPosts() {
             myPostService.getUserPost()
                 .then((data) => {
                     console.log(data);
-                    
+
                     let userPosts = {
                             data: data
                         },
                         template = handlebars.compile(htmlTemplate),
-                        html = template(userPosts);                      
-                        
-                    $('#container').html(html);
+                        html = template(userPosts);
+
+                    let div = document.createElement('div');
+                    $(div).addClass('myposts-feed')
+                        .html(html)
+                        .appendTo('#container');
                 });
         });
 }
 
-export {loadCurrentUserPosts};
+export { loadCurrentUserPosts };
