@@ -22,7 +22,7 @@ function generateHome() {
         let image = '';
 
         $('#post-img').on('click', function() {
-                        notifier.notifySuccess('YOU DID IT');
+            notifier.notifySuccess('YOU DID IT');
             if (this.files && this.files[0]) {
                 notifier.notifySuccess('YOU DID IT Again');
 

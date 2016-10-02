@@ -6,6 +6,7 @@ import * as userController from 'userController';
 import * as homeController from 'homeController';
 import * as navController from 'navController';
 import * as profileController from 'profileController';
+import * as searchController from 'searchController';
 import { storage } from 'storage';
 
 let $body = $('body');
@@ -86,16 +87,14 @@ let app = new Sammy('#container', function() {
         homeController.generateHome();
         navController.logedPanel();
         homeController.getAllPost();
-
+        searchController.searchUsers();
     });
 
-    this.get('#/profile', function() {
-        profileController.loadProfile();
-    });
+    this.get('#/profile', profileController.loadProfile);
 
-    this.get('#/profile/edit', function() {
-        profileController.updateProfile();
-    });
+    this.get('#/search', searchController.searchUsers);
+
+    this.get('#/profile/edit', profileController.updateProfile);
 
 });
 

@@ -37,6 +37,7 @@ function saveProfile(data) {
         lastname: data.lastname,
         gender: data.gender || 'Other',
         job: data.job || '',
+        birthday: data.birthday || '',
         location: {
             city: data.location.city || '',
             country: data.location.country || ''
@@ -58,9 +59,19 @@ function saveProfile(data) {
 }
 
 function updateProfile(data, profileId) {
-    validateProfileData(data);
+    if (!dataValidator.isValidName(data.firstname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid first name'
+        });
+    }
 
-    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles' + profileId,
+    if (!dataValidator.isValidName(data.lastname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        return Promise.reject({
+            message: 'Invalid last name'
+        });
+    }
+
+    let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles/' + profileId,
         headers = {
             'Authorization': 'Kinvey' + ' ' + storage.getItem(AUTH_TOKEN_KEY)
         };
@@ -71,6 +82,7 @@ function updateProfile(data, profileId) {
         firstname: data.firstname,
         lastname: data.lastname,
         job: data.job || '',
+        birthday: data.birthday || '',
         location: {
             city: data.location.city || '',
             country: data.location.country || ''
@@ -132,19 +144,19 @@ function makeQuery(queryString) {
     });
 }
 
-function validateProfileData(data) {
-    if (!dataValidator.isValidName(data.firstname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
-        return Promise.reject({
-            message: 'Invalid first name'
-        });
-    }
+// function validateProfileData(data) {
+//     if (!dataValidator.isValidName(data.firstname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+//         return Promise.reject({
+//             message: 'Invalid first name'
+//         });
+//     }
 
-    if (!dataValidator.isValidName(data.lastname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
-        return Promise.reject({
-            message: 'Invalid last name'
-        });
-    }
-}
+//     if (!dataValidator.isValidName(data.lastname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+//         return Promise.reject({
+//             message: 'Invalid last name'
+//         });
+//     }
+// }
 
 export {
     saveProfile,

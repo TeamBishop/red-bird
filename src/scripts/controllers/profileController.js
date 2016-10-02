@@ -9,7 +9,8 @@ import { loadTemplate } from 'template';
 import { storage } from 'storage';
 
 const AUTH_TOKEN_KEY = 'x-auth-token',
-    USER_ID = 'x-user-id';
+    USER_ID = 'x-user-id',
+    PROFILE_ID = 'x-profile-id';
 
 function loadProfile(context) {
     loadTemplate('profile-template.html')
@@ -19,6 +20,7 @@ function loadProfile(context) {
             profileService.getByUserId(storage.getItem(USER_ID))
                 .then((responseData) => {
                     $('#container').html(template(responseData[0]));
+                    storage.setItem(PROFILE_ID, responseData[0]._id);
                 });
         });
 }
@@ -54,9 +56,9 @@ function updateProfile(context) {
                     birthday: $('#birthday-field').val(),
                 };
 
-                profileService.updateProfile(data)
+                profileService.updateProfile(data, storage.getItem(PROFILE_ID))
                     .then((resolve, reject) => {
-                        console.log('Saved!');
+                        context.redirect('#/profile');
                     });
             });
         });
@@ -66,12 +68,9 @@ function loadSidePanel(context) {
     loadTemplate('profile-side-panel.html')
         .then((htmlTemplate) => {
             let template = handlebars.compile(htmlTemplate);
-            console.log(htmlTemplate);
-            console.log(template);
 
-            profileService.getByUserId(storage.getItem(USER_ID))
+            profileService.getByUserId(storage.getItem(USER_ID), storage.getItem(PROFILE_ID))
                 .then((responseData) => {
-                    console.log(responseData);
                     $('#container-left').html(template(responseData[0]));
                 });
         });
