@@ -86,7 +86,6 @@ let app = new Sammy('#container', function() {
         homeController.generateHome();
         navController.logedPanel();
         homeController.getPost();
-        profileController.loadSidePanel();
         //homeController.updatePostFeed();
         // searchController.searchUsers();
     });
