@@ -27,6 +27,7 @@ SystemJS.config({
         'homeController': './scripts/controllers/homeController.js',
         'homeService': './scripts/services/homeService.js',
         'navController': './scripts/controllers/navController.js',
+        'profileController': './scripts/controllers/profileController.js',
         //'feedController': './scripts/controllers/feedController.js',
         //'feedService': './scripts/services/feedService.js',
 

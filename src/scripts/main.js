@@ -5,6 +5,7 @@ import { hasLoggedInUser } from 'userService';
 import * as userController from 'userController';
 import * as homeController from 'homeController';
 import * as navController from 'navController';
+import * as profileController from 'profileController';
 
 let $body = $('body');
 
@@ -78,7 +79,8 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/profile', function() {
-        homeController.profilePanel();
+        // homeController.profilePanel();
+        profileController.loadProfile();
     });
 
     this.get('#/profile/edit', function() {
