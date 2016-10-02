@@ -21,21 +21,24 @@ function generateHome() {
     homePanel().then(() => {
         let image = '';
 
+        updatePostFeed();
+
         $('#post-img').on('change', function() {
             console.log("called img btn");
             
             //notifier.notifySuccess('YOU DID IT');
 
             if (this.files && this.files[0]) {
-                notifier.notifySuccess('YOU DID IT Again');
+                //notifier.notifySuccess('YOU DID IT Again');
                 
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
                     console.log(e);
-                    notifier.notifySuccess('YOU DID IT Again');
                     
                     if(e.total <= 50000) {
                         image = '' + e.target.result;
+                        notifier.notifySuccess('You picture has been upload');
+                        
                     }
                     else{
                         notifier.notifyError("Picture must be lower than 50kb!");
@@ -62,14 +65,18 @@ function generateHome() {
             homeService
                 .sendPost(username, context)
                 .then((responseData) => {
+                    console.log('Post has been send!');
                     console.log(responseData);
+                    $('.post-feed').html('');
+                    storage.setItem('post-possition', 0);
+                    getPost();
 
                 }, (error) => {
                     console.log(error);
                 });
         });
 
-        updatePostFeed();
+        
     });
 }
 
