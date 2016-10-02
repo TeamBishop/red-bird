@@ -10,7 +10,7 @@ import * as profileController from 'profileController';
 let $body = $('body');
 
 let app = new Sammy('#container', function() {
-    this.before({ except: { path: '#/authorise' } }, function() {
+    this.before({ except: { path: '#/login' } }, function() {
         const $navPanel = $('nav-panel');
         const $profileSidePanel = $('#container-left');
         const that = this;
@@ -42,23 +42,31 @@ let app = new Sammy('#container', function() {
     });
 
     this.get('#/signup', function(context) {
-        navController.welcomePanel();
-        userController.signUpUser(context);
+        if (hasLoggedInUser()) {
+            this.redirect('#/home');
+        } else {
+            navController.welcomePanel();
+            userController.signUpUser(context);
 
-        let wrapperBackgroundUrl = '../images/login-background.jpg';
-        $body.css({
-            'background-image': 'url(' + wrapperBackgroundUrl + ')',
-        });
+            let wrapperBackgroundUrl = '../images/login-background.jpg';
+            $body.css({
+                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+            });
+        }
     });
 
     this.get('#/login', function(context) {
-        navController.welcomePanel();
-        userController.logInUser(context);
+        if (hasLoggedInUser()) {
+            this.redirect('#/home');
+        } else {
+            navController.welcomePanel();
+            userController.logInUser(context);
 
-        let wrapperBackgroundUrl = '../images/login-background.jpg';
-        $body.css({
-            'background-image': 'url(' + wrapperBackgroundUrl + ')',
-        });
+            let wrapperBackgroundUrl = '../images/login-background.jpg';
+            $body.css({
+                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+            });
+        }
     });
 
     this.get('#/logout', userController.logOutUser);
