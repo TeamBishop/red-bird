@@ -75,12 +75,15 @@ body {
     margin: 0;
 }
 
-div.authorise {
+#container div.authorise {
     border-radius: 15px;
     width: 40%;
     min-width: 150px;
     display: inline-block;
     margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: lightgrey;
+    box-shadow: 5px 5px 5px #888888;
 }
 
 div.authorise span {
@@ -131,6 +134,10 @@ div#profile .edit-profile-buttons {
     border: 1px solid red;
     border-radius: 5px;
     background-color: pink;
+}
+
+#container .login-link {
+    color: lightslategray;
 }
 
 .containers {
