@@ -21,24 +21,26 @@ function generateHome() {
     homePanel().then(() => {
         let image = '';
 
-        $('#post-img').on('click', function() {
-            notifier.notifySuccess('YOU DID IT');
+        updatePostFeed();
 
+        $('#post-img').on('change', function() {
             console.log("called img btn");
-
-            notifier.notifySuccess('YOU DID IT');
+            
+            //notifier.notifySuccess('YOU DID IT');
 
             if (this.files && this.files[0]) {
-                notifier.notifySuccess('YOU DID IT Again');
-
+                //notifier.notifySuccess('YOU DID IT Again');
+                
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
                     console.log(e);
-                    notifier.notifySuccess('YOU DID IT Again');
-
-                    if (e.total <= 5000) {
+                    
+                    if(e.total <= 50000) {
                         image = '' + e.target.result;
-                    } else {
+                        notifier.notifySuccess('You picture has been upload');
+                        
+                    }
+                    else{
                         notifier.notifyError("Picture must be lower than 50kb!");
                     }
                 };
@@ -63,14 +65,18 @@ function generateHome() {
             homeService
                 .sendPost(username, context)
                 .then((responseData) => {
+                    console.log('Post has been send!');
                     console.log(responseData);
+                    $('.post-feed').html('');
+                    storage.setItem('post-possition', 0);
+                    getPost();
 
                 }, (error) => {
                     console.log(error);
                 });
         });
 
-        updatePostFeed();
+        
     });
 }
 
@@ -109,7 +115,7 @@ function getAllPost() {
 
             homeService.getAllPost().then((data) => {
                 let feedData = {
-                    data: data
+                    data: data 
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
                 let html = templateFunc(feedData);
@@ -125,18 +131,20 @@ function getPost() {
 
             homeService.getPost(currentPost).then((data) => {
 
-                if (data.length === 0) {
+                if(data.length === 0){
                     notifier.notifyError('No more posts...');
-
+                    
                     return;
                 }
                 notifier.notifySuccess('LOADING...');
-
+                
+                console.log(data.length);
                 let feedData = {
-                    data: data
+                    data: data 
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
                 let html = templateFunc(feedData);
+                console.log(html);
                 $('.post-feed').append(html);
             });
         });
@@ -144,7 +152,7 @@ function getPost() {
 
 function updatePostFeed() {
     $('.post-feed').on('scroll', function() {
-        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
             getPost();
         }
     });

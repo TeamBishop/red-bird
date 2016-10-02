@@ -127,6 +127,7 @@ function getByName(name) {
 }
 
 function makeQuery(queryString) {
+  
     let url = baseServiceUrl + '/appdata/' + appCredentials.appKey + '/profiles/?query=' + queryString;
     let headers = {
         'Authorization': 'Kinvey' + ' ' + storage.getItem(AUTH_TOKEN_KEY)

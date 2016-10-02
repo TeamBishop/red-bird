@@ -73,9 +73,7 @@ function getPost(current) {
             'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
         };
 
-        console.log("Home service" + next);
-        console.log("Home service" + current);
-        storage.setItem('post-possition', next);
+    storage.setItem('post-possition', next);
 
     return new Promise((resolve, reject) => {
         httpRequester.getJSON(url, {
