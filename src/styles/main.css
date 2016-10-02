@@ -20,7 +20,7 @@ body {
 #container-left .container {
     width: 150px;
     background-color: azure;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 3px solid lightskyblue;
 }
 
@@ -47,6 +47,8 @@ body {
 
 .navbar {
     border-radius: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     background-color: #FFE2E7;
 }
 
