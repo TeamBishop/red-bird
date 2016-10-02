@@ -18,7 +18,7 @@ const $containerElement = $('#container'),
 
 function generateHome() {
     homePanel().then(() => {
-        let image = null;
+        let image = '';
 
         $('#post-img').on('change', function() {
             if (this.files && this.files[0]) {
@@ -95,15 +95,14 @@ function getAllPost() {
                     data: data 
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
-                //console.log(templateFunc(feedData));
+                // console.log(templateFunc(feedData));
 
                 let html = templateFunc(feedData);
-                //console.log(html);
+                console.log(html);
 
-                // $("#container").html(html);
-                $('.post-feed').append(html);
+                // // $("#container").html(html);
+                $('.post-feed').html(html);
             });
-
         });
 }
 
