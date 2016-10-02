@@ -1,55 +1,104 @@
 <div class="container">
-    <span>Edit Profile</span>
     <div class="row">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="image-field">Upload image: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="file" id="image-field">
+        <div class="panel panel-body">
+            <span>Edit Profile</span>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Upload image: </label>
+                    <div class="col-lg-8">
+                        <input type="file" id="image-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="firstname-field">First name: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" id="firstname-field">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="firstname-field">First name: </label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" id="firstname-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="lastname-field">Last name: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" id="lastname-field">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="lastname-field">Last name: </label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" id="lastname-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="department-field">Department: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" id="department-field">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="department-field">Department: </label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" id="department-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="city-field">City: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" id="city-field">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="city-field">City: </label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" id="city-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="country-field">Country: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" id="country-field">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="country-field">Country: </label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" id="country-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label" for="birthday-field">Birthday: </label>
-                <div class="col-lg-8">
-                    <input class="form-control" type="text" id="birthday-field">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="birthday-field">Birthday: </label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" id="birthday-field">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-8">
-                    <input class="btn btn-primary" value="Save Changes" type="button" id="btn-save-info">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input class="btn btn-primary" value="Save Changes" type="button" id="btn-save-info">
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 </div>
+
+<!--<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <img alt="User Pic" src="http://intercityyouth.eu/wp-content/plugins/special-recent-posts/images/no-thumb.png" class="img-circle img-responsive">
+                        </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td><span class="fui-heart"></span> Upload picture:</td>
+                                        <td><input type="file"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fui-heart"></span> Gender:</td>
+                                        <td>{{gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fui-calendar"></span> Date of birth:</td>
+                                        <td>{{birthday}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fui-credit-card"></span> Department:</td>
+                                        <td>{{job}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="fui-location"></span> Location:</td>
+                                        <td>{{location.city}}, {{location.country}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="#/profile/edit" data-original-title="Edit this user" data-toggle="tooltip" type="button">
+                        <span class="fui-new"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
