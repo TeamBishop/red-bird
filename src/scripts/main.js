@@ -11,6 +11,8 @@ import * as searchController from 'searchController';
 import { storage } from 'storage';
 
 let $body = $('body');
+let homeBackground = '../images/cool-red.jpg';
+let loginBackground = '../images/cool-red.jpg';
 
 let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/login' } }, function() {
@@ -31,16 +33,14 @@ let app = new Sammy('#container', function() {
                 that.redirect('#/profile');
             });
 
-            let wrapperBackgroundUrl = '../images/home-background.jpg';
             $body.css({
-                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+                'background-image': 'url(' + homeBackground + ')',
             });
         } else {
             $profileSidePanel.html('');
 
-            let wrapperBackgroundUrl = '../images/login-background.jpg';
             $body.css({
-                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+                'background-image': 'url(' + loginBackground + ')',
             });
         }
     });
@@ -52,9 +52,8 @@ let app = new Sammy('#container', function() {
             navController.welcomePanel();
             userController.signUpUser(context);
 
-            let wrapperBackgroundUrl = '../images/login-background.jpg';
             $body.css({
-                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+                'background-image': 'url(' + homeBackground + ')',
             });
         }
     });
@@ -66,9 +65,8 @@ let app = new Sammy('#container', function() {
             navController.welcomePanel();
             userController.logInUser(context);
 
-            let wrapperBackgroundUrl = '../images/login-background.jpg';
             $body.css({
-                'background-image': 'url(' + wrapperBackgroundUrl + ')',
+                'background-image': 'url(' + loginBackground + ')',
             });
         }
     });
@@ -88,6 +86,7 @@ let app = new Sammy('#container', function() {
         homeController.generateHome();
         navController.logedPanel();
         homeController.getPost();
+        profileController.loadSidePanel();
         //homeController.updatePostFeed();
         // searchController.searchUsers();
     });

@@ -48,7 +48,7 @@ body {
     border-radius: 0px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    background-color: #FFE2E7;
+    background-color: crimson;
 }
 
 .navbar-right .navbar-form {
@@ -336,7 +336,6 @@ body .no-padding {
 }
 
 
-
 /* search result */
 
 .glyphicon {
@@ -465,7 +464,6 @@ small {
     transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     -webkit-transform: rotate(360deg);
-    /*-webkit-font-smoothing:antialiased;*/
 
 
 }
