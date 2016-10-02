@@ -62,4 +62,3 @@ function updateProfile(context) {
         });
 }
 
-export { loadProfile, updateProfile };
