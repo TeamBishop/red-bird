@@ -11,8 +11,8 @@ import * as searchController from 'searchController';
 import { storage } from 'storage';
 
 let $body = $('body');
-let homeBackground = '../images/cool-red.jpg';
-let loginBackground = '../images/cool-red.jpg';
+let homeBackground = '../images/grey-background-05.jpg';
+let loginBackground = '../images/grey-linen-texture-background.jpg';
 
 let app = new Sammy('#container', function() {
     this.before({ except: { path: '#/login' } }, function() {
