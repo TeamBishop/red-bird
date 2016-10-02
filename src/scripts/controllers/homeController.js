@@ -85,51 +85,47 @@ function editProfilePanel() {
 
 // BETA VERSION - DOESN'T WORK CORRECT!
 function getAllPost() {
-        loadTemplate('post-feed.html')
-            .then((htmlTemplate)=>{
-                let someObj = [
-                    {
-                        "_id": "57eeaae536d8236c159d547f",
-                        "user": "57ee720e636f8a2d0e3b9da7",
-                        "content": {
-                            "message": "And....."
-                        },
-                        "_acl": {
-                            "creator": "57ee720e636f8a2d0e3b9da7"
-                        },
-                        "_kmd": {
-                            "lmt": "2016-09-30T18:11:49.020Z",
-                            "ect": "2016-09-30T18:11:49.020Z"
-                        }
+    loadTemplate('post-feed.html')
+        .then((htmlTemplate) => {
+            let someObj = {
+                data: [{
+                    "_id": "57eeaae536d8236c159d547f",
+                    "user": "57ee720e636f8a2d0e3b9da7",
+                    "content": {
+                        "message": "And....."
                     },
-                    {
-                        "_id": "57eeac2ae40d77896e634637",
-                        "user": "57ee45eb98206aa20c5414dc",
-                        "content": {
-                            "message": ""
-                        },
-                        "_acl": {
-                            "creator": "57ee45eb98206aa20c5414dc"
-                        },
-                        "_kmd": {
-                            "lmt": "2016-09-30T18:17:14.348Z",
-                            "ect": "2016-09-30T18:17:14.348Z"
-                        }
+                    "_acl": {
+                        "creator": "57ee720e636f8a2d0e3b9da7"
+                    },
+                    "_kmd": {
+                        "lmt": "2016-09-30T18:11:49.020Z",
+                        "ect": "2016-09-30T18:11:49.020Z"
                     }
-                ];
+                }, {
+                    "_id": "57eeac2ae40d77896e634637",
+                    "user": "57ee45eb98206aa20c5414dc",
+                    "content": {
+                        "message": ""
+                    },
+                    "_acl": {
+                        "creator": "57ee45eb98206aa20c5414dc"
+                    },
+                    "_kmd": {
+                        "lmt": "2016-09-30T18:17:14.348Z",
+                        "ect": "2016-09-30T18:17:14.348Z"
+                    }
+                }]
+            };
 
-                //console.log(someObj[0]._id);
-                //console.log(htmlTemplate);
+            let templateFunc = handlebars.compile(htmlTemplate);
+            console.log(templateFunc(someObj));
 
-                let templateFunc = handlebars.compile(htmlTemplate);
-                console.log(templateFunc(someObj));
+            let html = templateFunc(someObj);
+            //console.log(html);
 
-                let html = templateFunc(someObj);
-                //console.log(html);
-
-                // $("#container").html(html);
-                $('.post-feed').html(html);
-            });
+            // $("#container").html(html);
+            $('.post-feed').html(html);
+        });
 }
 
 export { generateHome, getAllPost, profilePanel, leftSidePanel, editProfilePanel };
