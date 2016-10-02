@@ -145,20 +145,6 @@ function makeQuery(queryString) {
     });
 }
 
-// function validateProfileData(data) {
-//     if (!dataValidator.isValidName(data.firstname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
-//         return Promise.reject({
-//             message: 'Invalid first name'
-//         });
-//     }
-
-//     if (!dataValidator.isValidName(data.lastname, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
-//         return Promise.reject({
-//             message: 'Invalid last name'
-//         });
-//     }
-// }
-
 export {
     saveProfile,
     updateProfile,
