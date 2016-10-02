@@ -85,11 +85,12 @@ let app = new Sammy('#container', function() {
         storage.setItem('post-possition', 0);
         homeController.generateHome();
         navController.logedPanel();
-        homeController.getAllPost();
+        homeController.getPost();
+        //homeController.updatePostFeed();
 
     });
 
-    this.get('#/profile', function() {
+    this.get(   '#/profile', function() {
         profileController.loadProfile();
     });
 

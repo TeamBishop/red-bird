@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 import handlebars from 'handlebars';
 import * as notifier from 'notifier';
-
+import { storage } from 'storage';
 import * as homeService from 'homeService';
 import { loadTemplate } from 'template';
 import { dataValidator } from 'dataValidator';
@@ -25,7 +25,6 @@ function generateHome() {
             console.log("called img btn");
             
             notifier.notifySuccess('YOU DID IT');
-               notifier.notifySuccess('YOU DID IT');
 
             if (this.files && this.files[0]) {
                 notifier.notifySuccess('YOU DID IT Again');
@@ -69,6 +68,8 @@ function generateHome() {
                     console.log(error);
                 });
         });
+
+        updatePostFeed();
     });
 }
 
@@ -117,7 +118,38 @@ function getAllPost() {
 }
 
 function getPost() {
-    
+    loadTemplate('post-feed.html')
+        .then((htmlTemplate) => {
+            let currentPost = storage.getItem('post-possition') | 0;
+
+            homeService.getPost(currentPost).then((data) => {
+
+                if(data.length === 0){
+                    notifier.notifyError('No more posts...');
+                    
+                    return;
+                }
+                notifier.notifySuccess('LOADING...');
+                
+                console.log(data.length);
+                let feedData = {
+                    data: data 
+                };
+                let templateFunc = handlebars.compile(htmlTemplate);
+                let html = templateFunc(feedData);
+                console.log(html);
+                $('.post-feed').append(html);
+            });
+        });
 }
 
-export { generateHome, getAllPost, profilePanel, leftSidePanel, editProfilePanel };
+function updatePostFeed() {
+    $('.post-feed').on('scroll', function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            getPost();
+        }
+    });
+
+}
+
+export { generateHome, getPost, profilePanel, leftSidePanel, editProfilePanel };

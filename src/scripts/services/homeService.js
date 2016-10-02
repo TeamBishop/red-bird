@@ -5,6 +5,8 @@ import $ from 'jquery';
 import { getByUserId } from 'profileService';
 import * as httpRequester from 'httpRequester';
 import { appCredentials, baseServiceUrl, baseAppDataUrl } from 'appConstants';
+import { storage } from 'storage';
+
 
 
 //const BASE_AUTH_CODE = 'Basic' + ' ' + getBase64Code(appCredentials.appKey + ':' + appCredentials.appSecret),
@@ -61,14 +63,19 @@ function getAllPost(){
     });    
 }
 
-function getPost(current, next) {
-    let data = '/feed-data/',
+function getPost(current) {
+    let next = current + 5,
+        data = '/feed-data/',
         sort = '?query={}&sort={"_kmd":-1}',
-        range = '?query={}&limit='+ next + '&skip=' + current,
+        range = '&&?query={}&limit='+ next + '&skip=' + current,
         url = baseServiceUrl + '/appdata/' + appCredentials.appKey + data + sort + range,
         headers = {
-        'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
-    };
+            'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
+        };
+
+        console.log("Home service" + next);
+        console.log("Home service" + current);
+        storage.setItem('post-possition', next);
 
     return new Promise((resolve, reject) => {
         httpRequester.getJSON(url, {
