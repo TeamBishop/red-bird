@@ -73,7 +73,7 @@ let app = new Sammy('#container', function() {
     this.get('#/home', function() {
         homeController.generateHome();
         navController.logedPanel();
-        //homeController.getAllPost();
+        homeController.getAllPost();
 
     });
 
