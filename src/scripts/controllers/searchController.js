@@ -21,12 +21,18 @@ function searchUsers() {
                         let template = handlebars.compile(htmlTemplate);
                         profileService.getByName(searchedName)
                             .then((responseData) => {
+                                if (0 === responseData.length) {
+                                    return Promise.reject('No results');
+                                }
+
                                 return Promise.resolve($('#search-results').html(template({ profiles: responseData })));
                             })
                             .then(() => {
                                 $('#search-results').on('click', 'a.btn-follow', function() {
                                     // console.log($(this).parents('search-result'));
                                 });
+                            }, (error) => {
+                                notifier.notifyError(error);
                             });
                     });
             });
