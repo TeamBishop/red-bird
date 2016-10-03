@@ -88,4 +88,26 @@ function getPost(current) {
     });    
 }
 
-export { sendPost, getAllPost, getPost };
+function getLastPost() {
+    let data = '/feed-data/',
+        sort = '?query={}&sort={"_kmd":-1}',
+        range = '&&?query={}&limit='+ 1 + '&skip=' + 0,
+        url = baseServiceUrl + '/appdata/' + appCredentials.appKey + data + sort + range,
+        headers = {
+            'Authorization':'Kinvey ' +  localStorage.getItem(AUTH_TOKEN_KEY)
+        };
+
+    return new Promise((resolve, reject) => {
+        httpRequester.getJSON(url, {
+            headers: headers
+        })
+        .then((responseData) => {
+            resolve(responseData);
+        }, (error) => {
+            reject(error);
+        });
+    });    
+}
+
+
+export { sendPost, getAllPost, getPost, getLastPost };

@@ -19,7 +19,14 @@ const $containerElement = $('#container'),
 
 function generateHome() {
     homePanel().then(() => {
-        let image = '';
+        let image = '', 
+            listener;
+        
+        listener = setInterval(lastPost, 5000);
+
+        if(listener === false) {
+            clearInterval(listener);
+        }
 
         updatePostFeed();
 
@@ -50,6 +57,9 @@ function generateHome() {
 
         console.log('loadded');
 
+        //window.ready(setInterval(lastPost(), 1000));
+        
+
         $('#post-btn').on('click', function() {
             let username = localStorage.getItem(USER_ID),
                 message = $('#post-context').val(),
@@ -71,6 +81,7 @@ function generateHome() {
                     $('.post-feed').html('');
                     storage.setItem('post-possition', 0);
                     getPost();
+                    
 
                 }, (error) => {
                     console.log(error);
@@ -130,6 +141,16 @@ function getPost() {
             let currentPost = storage.getItem('post-possition') | 0;
 
             homeService.getPost(currentPost).then((data) => {
+                
+                console.log(data[0]._kmd.ect);
+                console.log(localStorage.getItem('last-post'));
+
+                // notifierWhenSomebodyPost();
+                console.log(localStorage.getItem('post-possition'));
+                if ((localStorage.getItem('post-possition') | 0 ) === 5) {
+                    console.log('set last post')
+                    localStorage.setItem('last-post', data[0]._kmd.ect); 
+                }
 
                 if(data.length === 0){
                     notifier.notifyError('No more posts...');
@@ -138,13 +159,13 @@ function getPost() {
                 }
                 notifier.notifySuccess('LOADING...');
                 
-                console.log(data.length);
+                //console.log(data.length);
                 let feedData = {
                     data: data 
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
                 let html = templateFunc(feedData);
-                console.log(html);
+                //onsole.log(html);
                 $('.post-feed').append(html);
             });
         });
@@ -207,4 +228,33 @@ function makeHashTag(input) {
     return collection;  
 }
 
-export { generateHome, getPost, profilePanel, leftSidePanel, editProfilePanel };
+// function notifierWhenSomebodyPost() {
+//     let check = setInterval(lastPost(), 1000);
+// }
+
+//var myVar = setInterval(function(){ myTimer() }, 1000);
+
+function lastPost() {
+        homeService.getLastPost().then((data)=>{
+
+        let time = data[0]._kmd.ect;
+        console.log(time);
+        console.log(localStorage.getItem('last-post'));
+
+        if(localStorage.getItem('last-post') === time) {
+            //console.log('They are same');
+        } else {
+            localStorage.setItem('last-post', time);
+            console.log('They are not same');
+            notifier.notifySuccess('New post');
+        }
+    });
+};
+
+
+
+// function myStopFunction() {
+//     clearInterval(myVar);
+// }
+
+export { generateHome, getPost, profilePanel, leftSidePanel, editProfilePanel, lastPost };
