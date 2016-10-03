@@ -4,6 +4,7 @@ import $ from 'jquery';
 import handlebars from 'handlebars';
 
 import * as notifier from 'notifier';
+import * as profileController from 'profileController';
 import * as profileService from 'profileService';
 import { loadTemplate } from 'template';
 import { storage } from 'storage';
@@ -34,6 +35,7 @@ function searchUsers() {
                                     let followingId = $(this).parents('.search-result').attr('data-id');
                                     profileService.addFollowing(storage.getItem(USER_ID_KEY), followingId)
                                         .then((success) => {
+                                            profileController.loadSidePanel();
                                             notifier.notifySuccess(success.message);
                                         }, (err) => {
                                             notifier.notifySuccess(err.message);
