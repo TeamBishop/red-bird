@@ -31,6 +31,5 @@ SystemJS.config({
         'searchController': './scripts/controllers/searchController.js',
         'myPostController': './scripts/controllers/myPostController.js',
         'myPostService': './scripts/services/myPostService.js',
-
     }
 });

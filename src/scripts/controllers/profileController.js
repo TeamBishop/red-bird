@@ -85,6 +85,7 @@ function loadSidePanel(context) {
 
             profileService.getByUserId(storage.getItem(USER_ID), storage.getItem(PROFILE_ID))
                 .then((responseData) => {
+                    responseData[0].followingCount = responseData[0].followings.length - 1;
                     $('#container-left').html(template(responseData[0]));
                 });
         });

@@ -8,6 +8,8 @@ import * as profileService from 'profileService';
 import { loadTemplate } from 'template';
 import { storage } from 'storage';
 
+const USER_ID_KEY = 'x-user-id';
+
 function searchUsers() {
     loadTemplate('search.html')
         .then((htmlTemplate) => {
@@ -29,7 +31,13 @@ function searchUsers() {
                             })
                             .then(() => {
                                 $('#search-results').on('click', 'a.btn-follow', function() {
-                                    // console.log($(this).parents('search-result'));
+                                    let followingId = $(this).parents('.search-result').attr('data-id');
+                                    profileService.addFollowing(storage.getItem(USER_ID_KEY), followingId)
+                                        .then((success) => {
+                                            notifier.notifySuccess(success.message);
+                                        }, (err) => {
+                                            notifier.notifySuccess(err.message);
+                                        });
                                 });
                             }, (error) => {
                                 notifier.notifyError(error);

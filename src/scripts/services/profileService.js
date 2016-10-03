@@ -43,6 +43,7 @@ function saveProfile(data) {
             country: data.location.country || ''
         },
         userId: storage.getItem(USER_ID_KEY),
+        followings: data.followings || ['']
     };
 
     return new Promise((resolve, reject) => {
@@ -77,6 +78,7 @@ function updateProfile(data, profileId) {
         };
 
     data.location = data.location || {};
+
     data = {
         avatarSrc: data.avatarSrc || '',
         firstname: data.firstname,
@@ -88,6 +90,7 @@ function updateProfile(data, profileId) {
             country: data.location.country || ''
         },
         userId: storage.getItem(USER_ID_KEY),
+        followings: data.followings || ['']
     };
 
     return new Promise((resolve, reject) => {
@@ -98,6 +101,26 @@ function updateProfile(data, profileId) {
             })
             .then((responseData) => {
                 resolve(responseData);
+            }, (error) => {
+                reject(error);
+            });
+    });
+}
+
+function addFollowing(followerId, followingId) {
+    return new Promise((resolve, reject) => {
+        getByUserId(followerId)
+            .then((userData) => {
+                console.log(userData);
+                if (userData[0].followings.indexOf(followingId) >= 0) {
+                    return Promise.reject({ message: 'Already followed' });
+                }
+
+                userData[0].followings.push(followingId);
+                return updateProfile(userData[0], userData[0]._id);
+            })
+            .then(() => {
+                resolve({ message: 'Followed' });
             }, (error) => {
                 reject(error);
             });
@@ -149,5 +172,6 @@ export {
     saveProfile,
     updateProfile,
     getByName,
-    getByUserId
+    getByUserId,
+    addFollowing
 };

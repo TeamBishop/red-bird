@@ -14,14 +14,15 @@ const AUTH_TOKEN_KEY = 'x-auth-token';
 //    USER_ID = 'x-user-id';
 
 
-function sendPost(userID, content) {
+function sendPost(userID, content, tags) {
     let url = baseServiceUrl + baseAppDataUrl + appCredentials.appKey + '/feed-data',
         headers = {
             'Authorization': 'Kinvey ' + localStorage.getItem(AUTH_TOKEN_KEY),
         },
         postData = {
             user: userID,
-            content: content
+            content: content,
+            tags: tags
         };
 
     return new Promise((resolve, reject) => {
