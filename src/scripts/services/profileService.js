@@ -43,6 +43,8 @@ function saveProfile(data) {
             country: data.location.country || ''
         },
         userId: storage.getItem(USER_ID_KEY),
+        followers: data.followers || [''],
+        followings: data.followings || ['']
     };
 
     return new Promise((resolve, reject) => {
@@ -77,6 +79,7 @@ function updateProfile(data, profileId) {
         };
 
     data.location = data.location || {};
+
     data = {
         avatarSrc: data.avatarSrc || '',
         firstname: data.firstname,
@@ -88,6 +91,8 @@ function updateProfile(data, profileId) {
             country: data.location.country || ''
         },
         userId: storage.getItem(USER_ID_KEY),
+        followers: data.followers || [''],
+        followings: data.followings || ['']
     };
 
     return new Promise((resolve, reject) => {
@@ -100,6 +105,38 @@ function updateProfile(data, profileId) {
                 resolve(responseData);
             }, (error) => {
                 reject(error);
+            });
+    });
+}
+
+function addFollowing(followerId, followingId) {
+    return new Promise((resolve, reject) => {
+        getByUserId(followerId)
+            .then((userData) => {
+                userData[0].followings.push(followingId);
+                return updateProfile(userData[0], followerId);
+            })
+            .then(() => {
+                resolve('Added following!');
+            }, (err) => {
+                reject('Error when adding following');
+                console.log(err);
+            });
+    });
+}
+
+function addFollower(followingId, followerId) {
+    return new Promise((resolve, reject) => {
+        getByUserId(followingId)
+            .then((userData) => {
+                userData[0].followers.push(followerId);
+                return updateProfile(userData[0], followingId);
+            })
+            .then(() => {
+                resolve('Added follower!');
+            }, (err) => {
+                reject('Error when adding follower');
+                console.log(err);
             });
     });
 }
@@ -149,5 +186,7 @@ export {
     saveProfile,
     updateProfile,
     getByName,
-    getByUserId
+    getByUserId,
+    addFollower,
+    addFollowing
 };
