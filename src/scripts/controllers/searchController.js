@@ -4,9 +4,12 @@ import $ from 'jquery';
 import handlebars from 'handlebars';
 
 import * as notifier from 'notifier';
+import * as profileController from 'profileController';
 import * as profileService from 'profileService';
 import { loadTemplate } from 'template';
 import { storage } from 'storage';
+
+const USER_ID_KEY = 'x-user-id';
 
 function searchUsers() {
     loadTemplate('search.html')
@@ -29,7 +32,14 @@ function searchUsers() {
                             })
                             .then(() => {
                                 $('#search-results').on('click', 'a.btn-follow', function() {
-                                    // console.log($(this).parents('search-result'));
+                                    let followingId = $(this).parents('.search-result').attr('data-id');
+                                    profileService.addFollowing(storage.getItem(USER_ID_KEY), followingId)
+                                        .then((success) => {
+                                            profileController.loadSidePanel();
+                                            notifier.notifySuccess(success.message);
+                                        }, (err) => {
+                                            notifier.notifySuccess(err.message);
+                                        });
                                 });
                             }, (error) => {
                                 notifier.notifyError(error);

@@ -18,11 +18,8 @@ const AUTH_TOKEN_KEY = 'x-auth-token',
 function loadCurrentUserPosts() {
     loadTemplate('post-feed.html')
         .then((htmlTemplate) => {
-
             myPostService.getUserPost()
                 .then((data) => {
-                    console.log(data);
-
                     let userPosts = {
                             data: data
                         },

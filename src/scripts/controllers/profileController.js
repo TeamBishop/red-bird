@@ -66,7 +66,6 @@ function updateProfile(context) {
                             },
                             birthday: $('#birthday-field').val(),
                         };
-                        console.log(data);
                         profileService.updateProfile(data, storage.getItem(PROFILE_ID))
                             .then((resolve, reject) => {
                                 loadSidePanel();
@@ -82,9 +81,9 @@ function loadSidePanel(context) {
     loadTemplate('profile-side-panel.html')
         .then((htmlTemplate) => {
             let template = handlebars.compile(htmlTemplate);
-
             profileService.getByUserId(storage.getItem(USER_ID), storage.getItem(PROFILE_ID))
                 .then((responseData) => {
+                    responseData[0].followingCount = responseData[0].followings.length - 1;
                     $('#container-left').html(template(responseData[0]));
                 });
         });
