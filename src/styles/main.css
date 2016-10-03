@@ -479,3 +479,13 @@ small {
     width: 0px;
     background: transparent;
 }
+
+#container .container .panel-edit {
+    height: 600px;
+    overflow-y: auto;
+}
+
+#container .container .panel-edit::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
