@@ -24,31 +24,19 @@ function generateHome() {
         updatePostFeed();
 
         $('#post-img').on('change', function() {
-            console.log("called img btn");
-            
-            //notifier.notifySuccess('YOU DID IT');
-
             if (this.files && this.files[0]) {
-                //notifier.notifySuccess('YOU DID IT Again');
-                
                 var imageReader = new FileReader();
                 imageReader.onload = function(e) {
-                    console.log(e);
-                    
-                    if(e.total <= 50000) {
+                    if (e.total <= 50000) {
                         image = '' + e.target.result;
                         notifier.notifySuccess('You picture has been upload');
-                        
-                    }
-                    else{
+                    } else {
                         notifier.notifyError("Picture must be lower than 50kb!");
                     }
                 };
                 imageReader.readAsDataURL(this.files[0]);
             }
         });
-
-        console.log('loadded');
 
         $('#post-btn').on('click', function() {
             let username = localStorage.getItem(USER_ID),
@@ -58,26 +46,20 @@ function generateHome() {
                     message: message,
                     image: image
                 };
-            
+
             $('#post-context').val('');
-
-            // Must add some kind of validation !
-
             homeService
-                .sendPost(username, context,tags)
+                .sendPost(username, context, tags)
                 .then((responseData) => {
-                    console.log('Post has been send!');
-                    console.log(responseData);
                     $('.post-feed').html('');
                     storage.setItem('post-possition', 0);
                     getPost();
-
                 }, (error) => {
                     console.log(error);
                 });
         });
 
-        
+
     });
 }
 
@@ -115,7 +97,7 @@ function getAllPost() {
 
             homeService.getAllPost().then((data) => {
                 let feedData = {
-                    data: data 
+                    data: data
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
                 let html = templateFunc(feedData);
@@ -131,20 +113,17 @@ function getPost() {
 
             homeService.getPost(currentPost).then((data) => {
 
-                if(data.length === 0){
+                if (data.length === 0) {
                     notifier.notifyError('No more posts...');
-                    
+
                     return;
                 }
                 notifier.notifySuccess('LOADING...');
-                
-                console.log(data.length);
                 let feedData = {
-                    data: data 
+                    data: data
                 };
                 let templateFunc = handlebars.compile(htmlTemplate);
                 let html = templateFunc(feedData);
-                console.log(html);
                 $('.post-feed').append(html);
             });
         });
@@ -152,7 +131,7 @@ function getPost() {
 
 function updatePostFeed() {
     $('.post-feed').on('scroll', function() {
-        if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
             getPost();
         }
     });
@@ -165,46 +144,46 @@ function makeHashTag(input) {
         end,
         isLoop = true;
 
-    if(input[0] === '#') {
+    if (input[0] === '#') {
         start = 0;
-        end = input.indexOf(' ', start+1);
+        end = input.indexOf(' ', start + 1);
 
-        if(end === -1) {
+        if (end === -1) {
             end = input.length;
-            collection.push(input.substring(start+1, end).toLowerCase());
+            collection.push(input.substring(start + 1, end).toLowerCase());
         }
 
         collection.push(input.substring(start, end).toLowerCase());
 
         start = end;
     }
-        
+
     while (isLoop) {
 
         start = input.indexOf(' #', start);
 
-        if(start === -1) {
+        if (start === -1) {
             isLoop = false;
 
             break;
         }
 
-        end = input.indexOf(' ', start+2);
+        end = input.indexOf(' ', start + 2);
 
-        if(end === -1) {
+        if (end === -1) {
             end = input.length;
-            collection.push(input.substring(start+1, end).toLowerCase());
+            collection.push(input.substring(start + 1, end).toLowerCase());
             isLoop = false;
 
             break;
         }
 
-        collection.push(input.substring(start+1, end).toLowerCase());
+        collection.push(input.substring(start + 1, end).toLowerCase());
 
-        start = end;  
-    } 
+        start = end;
+    }
 
-    return collection;  
+    return collection;
 }
 
 export { generateHome, getPost, profilePanel, leftSidePanel, editProfilePanel };
