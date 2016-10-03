@@ -8,8 +8,6 @@
 /bower.json
 /component.json
 /node_modules
-/src/bower_components
-/src/node_modules
 /test/sample
 !/test/sample/bower.json
 /npm-shrinkwrap.json
