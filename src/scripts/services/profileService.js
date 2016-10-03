@@ -43,7 +43,6 @@ function saveProfile(data) {
             country: data.location.country || ''
         },
         userId: storage.getItem(USER_ID_KEY),
-        followers: data.followers || [''],
         followings: data.followings || ['']
     };
 
@@ -91,7 +90,6 @@ function updateProfile(data, profileId) {
             country: data.location.country || ''
         },
         userId: storage.getItem(USER_ID_KEY),
-        followers: data.followers || [''],
         followings: data.followings || ['']
     };
 
@@ -113,30 +111,18 @@ function addFollowing(followerId, followingId) {
     return new Promise((resolve, reject) => {
         getByUserId(followerId)
             .then((userData) => {
-                userData[0].followings.push(followingId);
-                return updateProfile(userData[0], followerId);
-            })
-            .then(() => {
-                resolve('Added following!');
-            }, (err) => {
-                reject('Error when adding following');
-                console.log(err);
-            });
-    });
-}
+                console.log(userData);
+                if (userData[0].followings.indexOf(followingId) >= 0) {
+                    return Promise.reject({ message: 'Already followed' });
+                }
 
-function addFollower(followingId, followerId) {
-    return new Promise((resolve, reject) => {
-        getByUserId(followingId)
-            .then((userData) => {
-                userData[0].followers.push(followerId);
-                return updateProfile(userData[0], followingId);
+                userData[0].followings.push(followingId);
+                return updateProfile(userData[0], userData[0]._id);
             })
             .then(() => {
-                resolve('Added follower!');
-            }, (err) => {
-                reject('Error when adding follower');
-                console.log(err);
+                resolve({ message: 'Followed' });
+            }, (error) => {
+                reject(error);
             });
     });
 }
@@ -187,6 +173,5 @@ export {
     updateProfile,
     getByName,
     getByUserId,
-    addFollower,
     addFollowing
 };

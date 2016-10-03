@@ -32,21 +32,16 @@ function searchUsers() {
                             .then(() => {
                                 $('#search-results').on('click', 'a.btn-follow', function() {
                                     let followingId = $(this).parents('.search-result').attr('data-id');
-                                    let addFollowingPromise = profileService.addFollowing(storage.getItem(USER_ID_KEY), followingId);
-                                    let addFollowerPromise = profileService.addFollower(followingId, storage.getItem(USER_ID_KEY));
-                                    Promise.all(addFollowingPromise, addFollowerPromise)
-                                        .then((suc) => {
-                                            console.log('Added');
-                                            console.log(suc);
+                                    profileService.addFollowing(storage.getItem(USER_ID_KEY), followingId)
+                                        .then((success) => {
+                                            notifier.notifySuccess(success.message);
                                         }, (err) => {
-                                            console.log('Not added');
-                                            console.log(err);
+                                            notifier.notifySuccess(err.message);
                                         });
                                 });
                             }, (error) => {
                                 notifier.notifyError(error);
-                            })
-
+                            });
                     });
             });
         });
