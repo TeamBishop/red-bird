@@ -10,4 +10,4 @@ function loadTemplate(name) {
     return httpRequester.get(path);
 }
 
-export { loadTemplate }
+export { loadTemplate };
