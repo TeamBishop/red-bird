@@ -1,0 +1,28 @@
+{
+    "name": "pink-bird",
+    "version": "1.0.0",
+    "description": "1.0.1a",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "mocha": "^3.1.0",
+        "sinon": "^1.17.6"
+    },
+    "scripts": {
+        "test": "mocha --reporter spec"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TeamBishop/pink-bird.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/TeamBishop/pink-bird/issues"
+    },
+    "homepage": "https://github.com/TeamBishop/pink-bird#readme"
+}
