@@ -29,6 +29,7 @@ function loadCurrentUserPosts() {
                         template = handlebars.compile(htmlTemplate),
                         html = template(userPosts);
 
+                    $('#container').html('');
                     let div = document.createElement('div');
                     $(div).addClass('myposts-feed')
                         .html(html)
