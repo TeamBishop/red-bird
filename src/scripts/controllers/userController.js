@@ -28,11 +28,10 @@ function signUpUser(context) {
                     .then((responseData) => {
                         profileService.saveProfile(profileData)
                             .then((resp) => {
-                                console.log('Success when invalid names');
                                 context.redirect('#/');
                                 notifier.notifySuccess('Signed up');
                             }, (error) => {
-                                console.log('Error when invalid names');
+                                console.log(error);
                             });
                     }, (error) => {
                         notifier.notifyError(error.message || 'Invalid data');
