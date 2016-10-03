@@ -56,8 +56,7 @@ function generateHome() {
                 tags = makeHashTag(message),
                 context = {
                     message: message,
-                    image: image,
-                    tags: tags
+                    image: image
                 };
             
             $('#post-context').val('');
@@ -65,7 +64,7 @@ function generateHome() {
             // Must add some kind of validation !
 
             homeService
-                .sendPost(username, context)
+                .sendPost(username, context,tags)
                 .then((responseData) => {
                     console.log('Post has been send!');
                     console.log(responseData);
